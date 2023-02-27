@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
-        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="400"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="450"
         x:Class="FilmLoggerDotNET.MainWindow"
         Title="FilmLogger 3.11 For Workgroups" SizeToContent="WidthAndHeight">
   <Window.Styles>
@@ -31,6 +31,7 @@
 
     <Style Selector="TextBox">
       <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
   </Window.Styles>
@@ -42,6 +43,7 @@
       </MenuItem>
       <MenuItem Header="_Config">
         <MenuItem x:Name="APIKeyMenu" Header="_API Key"></MenuItem>
+        <MenuItem x:Name="LicenseMenu" Header="_License"></MenuItem>
       </MenuItem>
     </Menu>
 
