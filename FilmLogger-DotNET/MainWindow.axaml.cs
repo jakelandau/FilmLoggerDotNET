@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Collections.Generic;
 using System;
+using System.Diagnostics;
 
 namespace FilmLogger_DotNET
 {
@@ -21,7 +22,7 @@ namespace FilmLogger_DotNET
         {
             InitializeComponent();
 
-            workingMovieArchive= new List<Movie>();
+            workingMovieArchive = new List<Movie>();
 
             Button FilePickerButton = this.FindControl<Button>("FilePicker");
             FilePickerButton.Click += FilePickerButtonClick;
@@ -31,28 +32,32 @@ namespace FilmLogger_DotNET
 
         }
 
-        private void FilePickerButtonClick(object? sender, RoutedEventArgs e)
+        private async void FilePickerButtonClick(object? sender, RoutedEventArgs e)
         {
             // Opens FileDialog
-            OpenFileDialog FileDialog = new OpenFileDialog();
+            OpenFileDialog FileDialog = new();
 
             // Creates filter to require JSON files
-            FileDialogFilter jsonFilter = new FileDialogFilter();
-            jsonFilter.Name = "JavaScript Object Notation";
+            FileDialogFilter jsonFilter = new()
+            {
+                Name = "JavaScript Object Notation"
+            };
             jsonFilter.Extensions.Add("json");
             FileDialog.Filters.Add(jsonFilter);
 
             // Try block reads JSON file into working archive
             // If JSON deserializer fails, send to catch block
             try
-            {
-                //Saves selected file path to string and displays file name
-                string filePath = FileDialog.ShowAsync(this).GetAwaiter().GetResult()[0];
-                string[] filePathElements = filePath.Split('\\');
+            { 
+                // Saves selected file path to string and displays file name
+                var filePath = await FileDialog.ShowAsync(this);
+                string[] filePathElements = filePath[0].Split('\\');
                 FileName.Text = filePathElements[filePathElements.Length - 1];
 
+                string JSONString = await File.ReadAllTextAsync(filePath[0]);
+
                 // Deserialized JSON into working Archive
-                workingMovieArchive = JsonConvert.DeserializeObject<List<Movie>>(File.ReadAllText(filePath));
+                workingMovieArchive = JsonConvert.DeserializeObject<List<Movie>>(JSONString);
                  
                 // Copies working archive for dump safety checks
                 safetyCheckMovieArchive = new List<Movie>(workingMovieArchive);
@@ -62,7 +67,7 @@ namespace FilmLogger_DotNET
             }
             catch (NullReferenceException err)
             {  
-                // Catches if file dialog is cancelled or closed without a selection
+                // TO-DO: Catches if file dialog is cancelled or closed without a selection
             }
             catch (JsonSerializationException err)
             {
@@ -70,16 +75,20 @@ namespace FilmLogger_DotNET
             }
         }
 
-        private void DumpFileButtonClick(object? sender, RoutedEventArgs e)
+        private async void DumpFileButtonClick(object? sender, RoutedEventArgs e)
         {
             // Opens FileDialog with JSON filter to save file
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            FileDialogFilter jsonFilter = new FileDialogFilter();
-            jsonFilter.Name = "JavaScript Object Notation";
+            SaveFileDialog fileDumpWindow = new();
+            FileDialogFilter jsonFilter = new()
+            {
+                Name = "JavaScript Object Notation"
+            };
             jsonFilter.Extensions.Add("json");
-            saveFileDialog.Filters.Add(jsonFilter);
+            fileDumpWindow.Filters.Add(jsonFilter);
 
-            saveFileDialog.ShowAsync(this);
+            // Dumps file to selected file path
+            string filePath = await fileDumpWindow.ShowAsync(this);
+            await File.WriteAllTextAsync(filePath, JsonConvert.SerializeObject(workingMovieArchive));
         }
 
         private void UpdateFilmCount()

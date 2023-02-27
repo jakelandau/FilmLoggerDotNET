@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="400"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="400"
         x:Class="FilmLogger_DotNET.MainWindow"
-        Title="FilmLogger_DotNET" SizeToContent="WidthAndHeight">
+        Title="FilmLogger 3.11 For Workgroups" SizeToContent="WidthAndHeight">
   <Window.Styles>
     <Style Selector="Button">
       <Setter Property="FontSize" Value="16"/>
@@ -35,13 +35,13 @@
 
   </Window.Styles>
   
-  <Grid HorizontalAlignment="Center" ColumnDefinitions="150,50,150,Auto"
+  <Grid HorizontalAlignment="Center" ColumnDefinitions="175,50,175,245"
         RowDefinitions="Auto,Auto,Auto,Auto,Auto" Margin="10">
     
     <!--Row 0-->
     <Button x:Name="FilePicker"
             Content="Open File" Grid.Row="0" Grid.Column="0"/>
-    <TextBlock x:Name="FileName" Text="file_name.json" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+    <TextBlock x:Name="FileName" Text="" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
     <Image x:Name="PosterImage"
            Source="C:\Users\jakel\Documents\GitHub\FilmLogger-DotNET\FilmLogger-DotNET\default.jpg"
            Height="350" Grid.Row="0" Grid.Column="3" Grid.RowSpan="4"/>
