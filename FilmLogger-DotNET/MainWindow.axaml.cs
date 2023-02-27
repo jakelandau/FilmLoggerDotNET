@@ -13,16 +13,16 @@ using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using TMDbLib.Client;
+using System.Drawing.Printing;
 
 namespace FilmLogger_DotNET
 {
     public partial class MainWindow : Window
     {
         List<Film> workingMovieArchive;
-
-        // Copy made during list import to check if user has made changes that need to be saved before closing
-        List<Film> safetyCheckMovieArchive;
-
+        List<Film> safetyCheckMovieArchive; // Copy made during list import to check if user has made changes that need to be saved before closing
+        Dictionary<string, string> APIKeys;
+        TMDbClient webClient;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,8 +35,8 @@ namespace FilmLogger_DotNET
             Button DumpFileButton = this.FindControl<Button>("DumpFile");
             DumpFileButton.Click += DumpFileButtonClick;
 
-            //var TMDbAPIKey = 
-            TMDbClient client = new("");
+            APIKeys = JsonConvert.DeserializeObject<Dictionary<string,string>>(File.ReadAllText(@"../../../secret.json"));
+            webClient = new(APIKeys["TMDbAPI"]);
 
 
         }
