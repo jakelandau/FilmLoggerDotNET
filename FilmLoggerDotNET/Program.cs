@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using System;
 
-namespace FilmLogger_DotNET
+namespace FilmLoggerDotNET
 {
     internal class Program
     {

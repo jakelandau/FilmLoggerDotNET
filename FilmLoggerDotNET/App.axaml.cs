@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace FilmLogger_DotNET
+namespace FilmLoggerDotNET
 {
     public partial class App : Application
     {
