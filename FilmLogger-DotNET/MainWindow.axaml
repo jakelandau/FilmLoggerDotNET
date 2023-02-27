@@ -29,7 +29,7 @@
       <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 
-    <Style Selector="TextBox">
+    <Style Selector="AutoCompleteBox">
       <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
@@ -47,8 +47,8 @@
            Height="350" Grid.Row="0" Grid.Column="3" Grid.RowSpan="4"/>
 
     <!--Row 1-->
-    <TextBlock Text="IMDB ID" Grid.Row="1" Grid.Column="0"/>
-    <TextBox x:Name="IMDBCode" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+    <TextBlock Text="Film Title:" Grid.Row="1" Grid.Column="0"/>
+    <AutoCompleteBox x:Name="TitleSearch" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
 
     <!--Row 2-->
     <DatePicker HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
