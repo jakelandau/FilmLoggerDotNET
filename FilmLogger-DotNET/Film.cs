@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class Movie
+public class Film
 {
     public int day { get; set; }
     public string imdb_id { get; set; }

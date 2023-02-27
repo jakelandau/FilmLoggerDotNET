@@ -1,34 +1,43 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
-using JetBrains.Annotations;
-using System.Threading.Tasks;
+
 using Newtonsoft.Json;
+using TMDbLib;
+
+using JetBrains.Annotations;
+
+using System;
+using System.Threading.Tasks;
 using System.IO;
 using System.Collections.Generic;
-using System;
 using System.Diagnostics;
+using TMDbLib.Client;
 
 namespace FilmLogger_DotNET
 {
     public partial class MainWindow : Window
     {
-        List<Movie> workingMovieArchive;
+        List<Film> workingMovieArchive;
 
         // Copy made during list import to check if user has made changes that need to be saved before closing
-        List<Movie> safetyCheckMovieArchive; 
+        List<Film> safetyCheckMovieArchive;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            workingMovieArchive = new List<Movie>();
+            workingMovieArchive = new List<Film>();
 
             Button FilePickerButton = this.FindControl<Button>("FilePicker");
             FilePickerButton.Click += FilePickerButtonClick;
 
             Button DumpFileButton = this.FindControl<Button>("DumpFile");
             DumpFileButton.Click += DumpFileButtonClick;
+
+            //var TMDbAPIKey = 
+            TMDbClient client = new("");
+
 
         }
 
@@ -57,10 +66,10 @@ namespace FilmLogger_DotNET
                 string JSONString = await File.ReadAllTextAsync(filePath[0]);
 
                 // Deserialized JSON into working Archive
-                workingMovieArchive = JsonConvert.DeserializeObject<List<Movie>>(JSONString);
+                workingMovieArchive = JsonConvert.DeserializeObject<List<Film>>(JSONString);
                  
                 // Copies working archive for dump safety checks
-                safetyCheckMovieArchive = new List<Movie>(workingMovieArchive);
+                safetyCheckMovieArchive = new List<Film>(workingMovieArchive);
 
                 // Updates Film Count Ticker
                 UpdateFilmCount();
