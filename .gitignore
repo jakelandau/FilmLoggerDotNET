@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /FilmLogger-DotNET/movie_list_beta.json
+/FilmLogger-DotNET/secret.json
