@@ -1,6 +1,9 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Shared.PlatformSupport;
 using MessageBox.Avalonia;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
@@ -25,13 +28,15 @@ namespace FilmLoggerDotNET
         private Film currentMovie = new Film(); // Film object in buffer to add to working archive
         private bool isVerified = false; // Latch to ensure IMDb ID has been verified before attempting to add to archive
 
-        private string iconPath = "../../../Assets/icon.ico";
+        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.ico";
+        private string TMDbLogoPath = "avares://FilmLoggerDotNET/Assets/TMDb_logo.png";
+        private string blankPosterPath = "avares://FilmLoggerDotNET/Assets/blank_poster.jpg";
+        private IAssetLoader assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
 
         public MainWindow()
         {
             InitializeComponent();
-
-            Icon = new WindowIcon(iconPath);
+            Icon = new WindowIcon(assetLoader.Open(new Uri(iconPath)));
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             // Sets the time dial to ensure that the date the film is seen
@@ -113,8 +118,8 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(iconPath)
-                });
+                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+            });
                 await errorBox.ShowDialog(this);
             }
         }
@@ -164,8 +169,8 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Success,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(iconPath)
-                });
+                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+        });
                 await successBox.ShowDialog(this);
             }
             catch
@@ -175,7 +180,7 @@ namespace FilmLoggerDotNET
                 isVerified = false;
 
                 // Sets poster back to blank
-                PosterImage.Source = "./Assets/blank_poster.jpg";
+                PosterImage.Source = blankPosterPath;
 
                 // Informs user of failure and provides troubleshooting steps
                 var errorBox = MessageBoxManager.GetMessageBoxCustomWindow(new MessageBoxCustomParamsWithImage
@@ -188,11 +193,11 @@ namespace FilmLoggerDotNET
                     ContentHeader = "Unable to verify with TMDb that film exists!",
                     ContentMessage = "Check that: \r\n\r\n" + "-Your IMDb ID is valid!\r\n\r\n" + "-Both you and themoviedb.org are online!\r\n\r\n" + "-You have entered a valid API Key!",
                     Markdown = true,
-                    Icon = new Bitmap("../../../Assets/TMDb_logo.png"),
+                    Icon = new Bitmap(assetLoader.Open(new Uri(TMDbLogoPath))),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(iconPath)
-                });
+                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+});
                 await errorBox.ShowDialog(this);
             }
         }
@@ -215,7 +220,7 @@ namespace FilmLoggerDotNET
                     UpdateFilmCount();
 
                     // Reset all UI fields and resets buffer and latch
-                    PosterImage.Source = "./Assets/blank_poster.jpg";
+                    PosterImage.Source = blankPosterPath;
                     DateSeen.SelectedDate = null;
                     SeenInTheatresBool.IsChecked = false;
                     IMDbID.Text = "";
@@ -233,7 +238,7 @@ namespace FilmLoggerDotNET
                         Icon = MessageBox.Avalonia.Enums.Icon.Success,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
-                        WindowIcon = new WindowIcon(iconPath)
+                        WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
                     });
                     await successBox.ShowDialog(this);
                 }
@@ -250,7 +255,7 @@ namespace FilmLoggerDotNET
                         Icon = MessageBox.Avalonia.Enums.Icon.Error,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
-                        WindowIcon = new WindowIcon(iconPath)
+                        WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
                     });
                     await errorBox.ShowDialog(this);
                 }
@@ -268,7 +273,7 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(iconPath)
+                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
                 });
                 await errorBox.ShowDialog(this);
             }
@@ -295,7 +300,7 @@ namespace FilmLoggerDotNET
                     Markdown = true,
                     Icon = MessageBox.Avalonia.Enums.Icon.Question,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    WindowIcon = new WindowIcon(iconPath)
+                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
                 });
                 var userSelection = await saveBox.ShowDialog(this);
 
@@ -350,7 +355,7 @@ namespace FilmLoggerDotNET
                         Icon = MessageBox.Avalonia.Enums.Icon.Success,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
-                        WindowIcon = new WindowIcon(iconPath)
+                        WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
                     });
                     await successBox.ShowDialog(this);
                 }
@@ -373,7 +378,7 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(iconPath)
+                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
                 });
                 await errorBox.ShowDialog(this);
             }
@@ -406,7 +411,7 @@ namespace FilmLoggerDotNET
                 Markdown = true,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 SizeToContent = SizeToContent.WidthAndHeight,
-                WindowIcon = new WindowIcon(iconPath)
+                WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
             });
             await licenseBox.ShowDialog(this);
         }

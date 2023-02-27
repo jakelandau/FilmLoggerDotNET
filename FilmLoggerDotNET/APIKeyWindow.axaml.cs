@@ -1,5 +1,7 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Platform;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -8,12 +10,13 @@ namespace FilmLoggerDotNET
 {
     public partial class APIKeyWindow : Window
     {
-        private string iconPath = "../../../Assets/icon.ico";
+        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.ico";
+        private IAssetLoader assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
         public APIKeyWindow()
         {
             InitializeComponent();
 
-            Icon = new WindowIcon(iconPath);
+            Icon = new WindowIcon(assetLoader.Open(new System.Uri(iconPath)));
 
             Button okButton = this.FindControl<Button>("APIOkButton");
             okButton.Click += OkButtonClick;
