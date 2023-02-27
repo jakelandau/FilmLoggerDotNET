@@ -1,6 +1,6 @@
 # FilmLogger 3.11 for Workgroups
 
- ![GitHub all releases](https://img.shields.io/github/downloads/JakeLandau/FilmLoggerDotNET/total) ![GitHub issues](https://img.shields.io/github/issues/jakelandau/FilmLoggerDotNET) ![GitHub](https://img.shields.io/github/license/jakelandau/FilmLoggerDotNET)
+![GitHub last commit](https://img.shields.io/github/last-commit/jakelandau/filmloggerdotnet) ![GitHub all releases](https://img.shields.io/github/downloads/JakeLandau/FilmLoggerDotNET/total) ![GitHub issues](https://img.shields.io/github/issues/jakelandau/FilmLoggerDotNET) ![GitHub](https://img.shields.io/github/license/jakelandau/FilmLoggerDotNET) 
 
 With the creation of FilmLogger in 2016, and the refactoring of FilmLogger v2 in 2021, we took Python and Tkinter as far as they could go. It turns out not very far.
 
