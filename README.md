@@ -18,11 +18,10 @@ When you open FilmLogger, you can start adding films immediately, or open a prev
 
 Verify your film using it's IMDb ID code! Films are verified using data services provided by [TheMovieDB.org](https://themoviedb.org).
 
-### ***FilmLogger REQUIRES you to have a free TheMovieDB.org Account.***
+![The Movie DB logo](https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg)
 
-![The Movie DB logo](./FilmLoggerDotNET/Assets/TMDb_logo.png)
+### **FilmLogger REQUIRES a free TheMovieDB.org Account with your own API Key.**
 
-### ***This will provide you with your own API Key to use.***
 
 Once your film has been verified, mark the date and location, and then click Add to Archive. A running count of all films in your archive shows in the corner.
 
