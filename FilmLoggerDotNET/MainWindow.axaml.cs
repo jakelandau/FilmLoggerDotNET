@@ -128,21 +128,34 @@ namespace FilmLoggerDotNET
 
         private async void VerifyButtonClick(object? sender, RoutedEventArgs e)
         {
-            // Checks if API Key is stored on disk, if not calls GetAPIKey
+            // Checks if API Key is stored on disk, if not calls GetAPIKey and ends function
             if (File.Exists("secret.json"))
             {
-                APIKeys = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("secret.json"));
+                try
+                {
+                    // Deserializes secret.json to obtain API keys
+                    APIKeys = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("secret.json"));
+
+                    // Attempts to instance client using API Key
+                    webClient = new TMDbClient(APIKeys["TMDbAPI"]);
+
+                }
+                
+                catch
+                {
+                    // Throws up API Key window if stored key doesn't work
+                    GetAPIKey(sender,e);
+                    return;
+                }
             }
             else
             {
                 GetAPIKey(sender, e);
+                return;
             }
-
 
             try
             {
-                // Instances the TMDb client with the stored API Key
-                webClient = new TMDbClient(APIKeys["TMDbAPI"]);
 
                 // Attempts to verify film with TheMovieDB backend,
                 // if successful populates initial data into currentMovie buffer
@@ -191,7 +204,7 @@ namespace FilmLoggerDotNET
                     },
                     ContentTitle = "Film Verification Error",
                     ContentHeader = "Unable to verify with TMDb that film exists!",
-                    ContentMessage = "Check that: \r\n\r\n" + "-Your IMDb ID is valid!\r\n\r\n" + "-Both you and themoviedb.org are online!\r\n\r\n" + "-You have entered a valid API Key!",
+                    ContentMessage = "Check that: \r\n\r\n" + "-Your IMDb ID is valid!\r\n\r\n" + "-Both you and themoviedb.org are online!\r\n\r\n",
                     Markdown = true,
                     Icon = new Bitmap(assetLoader.Open(new Uri(TMDbLogoPath))),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
@@ -349,7 +362,7 @@ namespace FilmLoggerDotNET
                     {
                         ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Archive Saved!",
-                        ContentHeader = "Your FilmLogger v3 Archive has been saved!",
+                        ContentHeader = "Your FilmLogger Archive has been saved!",
                         ContentMessage = "The working archive has now been cleared!",
                         Markdown = true,
                         Icon = MessageBox.Avalonia.Enums.Icon.Success,
