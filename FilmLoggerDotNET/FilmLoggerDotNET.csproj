@@ -33,10 +33,7 @@
   <ItemGroup>
     <!--Necessary for blank poster bitmap to load from relative path-->
     <AvaloniaResource Include="Assets\blank_poster.jpg" />
-    <AvaloniaResource Include="Assets\icon.ico" />
+    <AvaloniaResource Include="Assets\icon.png" />
     <AvaloniaResource Include="Assets\TMDb_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\icon.ico" />
   </ItemGroup>
 </Project>

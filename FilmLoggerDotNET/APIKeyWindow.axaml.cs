@@ -10,7 +10,7 @@ namespace FilmLoggerDotNET
 {
     public partial class APIKeyWindow : Window
     {
-        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.ico";
+        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
         private IAssetLoader assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
         public APIKeyWindow()
         {

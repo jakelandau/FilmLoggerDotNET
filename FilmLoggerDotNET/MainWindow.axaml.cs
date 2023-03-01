@@ -28,7 +28,7 @@ namespace FilmLoggerDotNET
         private Film currentMovie = new Film(); // Film object in buffer to add to working archive
         private bool isVerified = false; // Latch to ensure IMDb ID has been verified before attempting to add to archive
 
-        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.ico";
+        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
         private string TMDbLogoPath = "avares://FilmLoggerDotNET/Assets/TMDb_logo.png";
         private string blankPosterPath = "avares://FilmLoggerDotNET/Assets/blank_poster.jpg";
         private IAssetLoader assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
