@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Windows": {
+      "commandName": "Project"
+    },
+    "WSL-Ubuntu": {
+      "commandName": "WSL2",
+      "distributionName": "Ubuntu"
+    }
+  }
+}
