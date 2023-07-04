@@ -68,11 +68,11 @@ A copy of the license is attached in the file [`LICENSE.MD`](https://github.com/
 ## Dependencies
 FilmLogger 3.11 For Workgroups uses C# 11 and .NET 7. It relies upon the following packages:
 
-* Avalonia - v0.10.18 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
+* Avalonia - v0.10.21 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
 * Avalonia.NameGenerator - v1.6.1 - [MIT License](https://github.com/AvaloniaUI/Avalonia.NameGenerator/blob/main/LICENSE) - Copyright © .NET Foundation and Contributors
-* AsyncImageLoader.Avalonia - v2.4.0 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
+* AsyncImageLoader.Avalonia - v2.5.0 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
 * MessageBox.Avalonia - v2.1.0 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
-* Json.NET - v13.0.2 - [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md) - Copyright © 2007 James Newton-King
+* Json.NET - v13.0.3 - [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md) - Copyright © 2007 James Newton-King
 * TMDbLib - v2.0.0 - [MIT License](https://github.com/LordMike/TMDbLib/blob/master/LICENSE.txt) - Copyright © 2016 Michael Bisbjerg
 
 NOTE: The entirety of FilmLogger is licensed under the terms of the AGPLv3-only. The above MIT Licenses only apply to these packages when obtained from the upstream sources; the downstream versions included in FilmLogger become licensed under the AGPLv3-only through it's viral features.
