@@ -1,11 +1,15 @@
 {
   "profiles": {
-    "Windows": {
+    "Windows 10/11": {
       "commandName": "Project"
     },
-    "WSL-Ubuntu": {
-      "commandName": "WSL2",
+    "WSL2 - Ubuntu": {
+      "commandName": "WSL",
       "distributionName": "Ubuntu"
+    },
+    "WSL2 - Fedora Remix": {
+      "commandName": "WSL",
+      "distributionName": "fedoraremix"
     }
   }
 }
