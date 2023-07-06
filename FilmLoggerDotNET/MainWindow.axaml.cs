@@ -405,7 +405,7 @@ namespace FilmLoggerDotNET
                 ContentMessage = "Copyright © 2023 Jake Landau\r\n\r\n" +
                 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, specifically version 3.\r\n\r\n" +
                 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty\r\n\r\n of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License, version 3 for more details.\r\n\r\n" +
-                "A copy of the license is attached in the file LICENSE.MD.",
+                "A copy of the license is attached in the file `LICENSE.MD`, included in the program folder.",
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 SizeToContent = SizeToContent.WidthAndHeight,
                 WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath))),
