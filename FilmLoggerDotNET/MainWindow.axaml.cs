@@ -6,6 +6,7 @@ using Avalonia.Platform;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
 using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -43,17 +44,10 @@ namespace FilmLoggerDotNET
             DateSeen.MinYear = DateTimeOffset.UnixEpoch;
 
             // Associates Buttons with event handlers
-            Button FilePickerButton = this.FindControl<Button>("FilePicker");
-            FilePickerButton.Click += FilePickerButtonClick;
-
-            Button DumpFileButton = this.FindControl<Button>("DumpFile");
-            DumpFileButton.Click += DumpFileButtonClick;
-
-            Button VerifyButton = this.FindControl<Button>("VerifyButton");
+            FilePicker.Click += FilePickerButtonClick;
+            DumpFile.Click += DumpFileButtonClick;
             VerifyButton.Click += VerifyButtonClick;
-
-            Button AddMovieButton = this.FindControl<Button>("AddMovie");
-            AddMovieButton.Click += AddMovieButtonClick;
+            AddMovie.Click += AddMovieButtonClick;
 
             // Associates Menu items with event handlers
             DumpFileMenu.Click += DumpFileButtonClick;
@@ -112,13 +106,12 @@ namespace FilmLoggerDotNET
                     ContentTitle = "Archive Loading Error",
                     ContentHeader = "Unable to load archive from JSON file",
                     ContentMessage = "Ensure that your JSON file is formatted correctly!",
-                    Markdown = true,
                     Icon = MsBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                await errorBox.ShowAsPopupAsync(this);
+                await errorBox.ShowWindowDialogAsync(this);
             }
         }
 
@@ -136,7 +129,6 @@ namespace FilmLoggerDotNET
 
                     // Attempts to instance client using API Key
                     webClient = new TMDbClient(APIKeys["TMDbAPI"]);
-
                 }
                 
                 catch
@@ -170,19 +162,18 @@ namespace FilmLoggerDotNET
                 PosterImage.Source = $"https://image.tmdb.org/t/p/w500/{webSourcedFilm.PosterPath}";
 
                 // Informs user their film is ready to add to archive
-                var successBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                var successBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
                     ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Film Verified!",
                     ContentHeader = "Your film is ready to add to your archive!",
                     ContentMessage = "Make sure the poster on the right matches your film!",
-                    Markdown = true,
-                    Icon = MessageBox.Avalonia.Enums.Icon.Success,
+                    Icon = MsBox.Avalonia.Enums.Icon.Success,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
         });
-                await successBox.ShowDialog(this);
+                await successBox.ShowWindowDialogAsync(this);
             }
             catch
             {
@@ -194,7 +185,7 @@ namespace FilmLoggerDotNET
                 PosterImage.Source = blankPosterPath;
 
                 // Informs user of failure and provides troubleshooting steps
-                var errorBox = MessageBoxManager.GetMessageBoxCustomWindow(new MessageBoxCustomParamsWithImage
+                var errorBox = MessageBoxManager.GetMessageBoxCustom(new MessageBoxCustomParams
                 {
                     ButtonDefinitions = new[]
                     {
@@ -203,13 +194,12 @@ namespace FilmLoggerDotNET
                     ContentTitle = "Film Verification Error",
                     ContentHeader = "Unable to verify with TMDb that film exists!",
                     ContentMessage = "Check that: \r\n\r\n" + "-Your IMDb ID is valid!\r\n\r\n" + "-Both you and themoviedb.org are online!\r\n\r\n",
-                    Markdown = true,
-                    Icon = new Bitmap(AssetLoader.Open(new Uri(TMDbLogoPath))),
+                    ImageIcon = new Bitmap(AssetLoader.Open(new Uri(TMDbLogoPath))),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
 });
-                await errorBox.ShowDialog(this);
+                await errorBox.ShowWindowDialogAsync(this);
             }
         }
 
@@ -239,54 +229,51 @@ namespace FilmLoggerDotNET
                     isVerified = false;
 
                     // MessageBox to indicate Film has been added to working archive
-                    var successBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                    var successBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                     {
                         ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Film Added to Archive!",
                         ContentHeader = "Your film has been added to the archive!",
-                        ContentMessage = "Make sure to save your archive before closing FilmLogger 3.11 For Workgroups!",
-                        Markdown = true,
-                        Icon = MessageBox.Avalonia.Enums.Icon.Success,
+                        ContentMessage = "Make sure to save your archive before closing FilmLogger NT 3.51!",
+                        Icon = MsBox.Avalonia.Enums.Icon.Success,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
                         WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
-                    await successBox.ShowDialog(this);
+                    await successBox.ShowWindowDialogAsync(this);
                 }
                 else
                 {
                     // MessageBox to indicate
-                    var errorBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                    var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                     {
                         ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Date Selection Error",
                         ContentHeader = "You haven't selected a date for when the film was seen!",
                         ContentMessage = "You can't track your films if you don't tell me when you saw it!",
-                        Markdown = true,
-                        Icon = MessageBox.Avalonia.Enums.Icon.Error,
+                        Icon = MsBox.Avalonia.Enums.Icon.Error,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
                         WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
-                    await errorBox.ShowDialog(this);
+                    await errorBox.ShowWindowDialogAsync(this);
                 }
             }
             // Informs user the verification latch has not been released
             else
             {
-                var errorBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
                     ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Film Verification Error",
                     ContentHeader = "You haven't verified your film using an IMDb ID!",
                     ContentMessage = "You need to verify your film before you can log it in your archive!",
-                    Markdown = true,
-                    Icon = MessageBox.Avalonia.Enums.Icon.Error,
+                    Icon = MsBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                await errorBox.ShowDialog(this);
+                await errorBox.ShowWindowDialogAsync(this);
             }
         }
 
@@ -299,7 +286,7 @@ namespace FilmLoggerDotNET
                 e.Cancel = true;
 
                 // Creates dialog box asking if the user wants to save changes
-                var saveBox = MessageBoxManager.GetMessageBoxCustomWindow(new MessageBoxCustomParams
+                var saveBox = MessageBoxManager.GetMessageBoxCustom(new MessageBoxCustomParams
                 {
                     ButtonDefinitions = new[] {
                         new ButtonDefinition {Name = "Save archive", IsDefault = true},
@@ -308,12 +295,11 @@ namespace FilmLoggerDotNET
                     ContentTitle = "Archive Not Saved!",
                     ContentHeader = "You haven't saved your changes yet!",
                     ContentMessage = "Do you want to save your archive?",
-                    Markdown = true,
-                    Icon = MessageBox.Avalonia.Enums.Icon.Question,
+                    Icon = MsBox.Avalonia.Enums.Icon.Question,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                var userSelection = await saveBox.ShowDialog(this);
+                var userSelection = await saveBox.ShowWindowDialogAsync(this);
 
                 /* If the user picks yes, saves the file and closes. If the
                  user picks no, sets the working archive equal to the safety
@@ -356,19 +342,18 @@ namespace FilmLoggerDotNET
                     safetyCheckMovieArchive = new List<Film>();
                     UpdateFilmCount();
 
-                    var successBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                    var successBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                     {
                         ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Archive Saved!",
                         ContentHeader = "Your FilmLogger Archive has been saved!",
                         ContentMessage = "The working archive has now been cleared!",
-                        Markdown = true,
-                        Icon = MessageBox.Avalonia.Enums.Icon.Success,
+                        Icon = MsBox.Avalonia.Enums.Icon.Success,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
                         WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
-                    await successBox.ShowDialog(this);
+                    await successBox.ShowWindowDialogAsync(this);
                 }
                 // Handles when file has not been selected
                 catch (ArgumentNullException err)
@@ -379,19 +364,18 @@ namespace FilmLoggerDotNET
             // Bypasses file dump if no new data has been added
             else if (workingMovieArchive.Count == safetyCheckMovieArchive.Count)
             {
-                var errorBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
                     ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Save Error",
                     ContentHeader = "Nothing new added to archive!",
                     ContentMessage = "You haven't added any new films, so there's nothing to save!",
-                    Markdown = true,
-                    Icon = MessageBox.Avalonia.Enums.Icon.Error,
+                    Icon = MsBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                await errorBox.ShowDialog(this);
+                await errorBox.ShowWindowDialogAsync(this);
             }
         }
 
@@ -414,17 +398,20 @@ namespace FilmLoggerDotNET
         {
             // Displays software license for FilmLogger, indicating the program
             // is licensed under the terms of AGPLv3-only.
-            var licenseBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+            var licenseBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
                 ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                 ContentTitle = "FilmLogger License",
-                ContentMessage = "Copyright © 2023 Jake Landau\r\n\r\nThis program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\nas published by the Free Software Foundation, specifically version 3.\r\n\r\nThis program is distributed in the hope that it will be useful,but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n\r\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License, version 3 for more details.\r\n\r\nA copy of the license is attached in the file `LICENSE.MD`.",
-                Markdown = true,
+                ContentMessage = "Copyright © 2023 Jake Landau\r\n\r\n" +
+                "This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, specifically version 3.\r\n\r\n" +
+                "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty\r\n\r\n of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License, version 3 for more details.\r\n\r\n" +
+                "A copy of the license is attached in the file LICENSE.MD.",
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 SizeToContent = SizeToContent.WidthAndHeight,
-                WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
+                WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath))),
+                Markdown = true
             });
-            await licenseBox.ShowDialog(this);
+            await licenseBox.ShowWindowDialogAsync(this);
         }
     }
 }
