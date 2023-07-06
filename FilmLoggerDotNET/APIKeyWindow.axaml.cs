@@ -11,12 +11,11 @@ namespace FilmLoggerDotNET
     public partial class APIKeyWindow : Window
     {
         private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
-        private IAssetLoader assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
         public APIKeyWindow()
         {
             InitializeComponent();
 
-            Icon = new WindowIcon(assetLoader.Open(new System.Uri(iconPath)));
+            Icon = new WindowIcon(AssetLoader.Open(new System.Uri(iconPath)));
 
             Button okButton = this.FindControl<Button>("APIOkButton");
             okButton.Click += OkButtonClick;
