@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using Avalonia.Platform.Storage;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
 using MsBox.Avalonia;
@@ -62,35 +63,35 @@ namespace FilmLoggerDotNET
 
         private async void FilePickerButtonClick(object? sender, RoutedEventArgs e)
         {
-            // Prepares file dialog with JSON filter
-            OpenFileDialog fileSelect = new OpenFileDialog();
-            FileDialogFilter jsonFilter = new FileDialogFilter()
-            {
-                Name = "JavaScript Object Notation"
-            };
-            jsonFilter.Extensions.Add("json");
-            fileSelect.Filters.Add(jsonFilter);
+            var topLevel = TopLevel.GetTopLevel(this);   
 
             // Try block reads JSON file into working archive
             try
             {
-                // Saves selected file path to string
-                string[] filePaths = await fileSelect.ShowAsync(this);
-                string filePath = filePaths[0];
+                var files = await topLevel.StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+                {
+                    Title = "Open FilmLogger v3 Archive",
+                    AllowMultiple = false,
+                    FileTypeFilter = new FilePickerFileType[] { new("FilmLogger v3 Archive") { Patterns = new[] { "*.json" }, MimeTypes = new[] { "application/json" } } }
+                });
 
-                // Grabs JSON string from file on file path and deserializes
-                string JSONString = await File.ReadAllTextAsync(filePath);
-                workingMovieArchive = JsonConvert.DeserializeObject<List<Film>>(JSONString);
+                if (files.Count >= 1)
+                {
+                    // Grabs JSON string from file on file path and deserializes
+                    await using var stream = await files[0].OpenReadAsync();
+                    using var streamReader = new StreamReader(stream);
+                    var JSONString = await streamReader.ReadToEndAsync();
+                    workingMovieArchive = JsonConvert.DeserializeObject<List<Film>>(JSONString);
 
-                // Grabs file name from file path and displays it
-                string[] filePathElements = filePath.Split('\\');
-                FileName.Text = filePathElements[filePathElements.Length - 1];
+                    // Grabs file name from file path and displays it
+                    FileName.Text = files[0].Name;
 
-                // Copies working archive for dump safety checks
-                safetyCheckMovieArchive = new List<Film>(workingMovieArchive);
+                    // Copies working archive for dump safety checks
+                    safetyCheckMovieArchive = new List<Film>(workingMovieArchive);
 
-                // Updates Film Count Ticker
-                UpdateFilmCount();
+                    // Updates Film Count Ticker
+                    UpdateFilmCount();
+                }
             }
             // Handles when file has not been selected
             catch (NullReferenceException err)
@@ -320,22 +321,26 @@ namespace FilmLoggerDotNET
 
         private async void SaveFile()
         {
-            // Prepares file dialog with JSON filter
-            SaveFileDialog fileDumpWindow = new();
-            FileDialogFilter jsonFilter = new()
-            {
-                Name = "JavaScript Object Notation"
-            };
-            jsonFilter.Extensions.Add("json");
-            fileDumpWindow.Filters.Add(jsonFilter);
+            var topLevel = TopLevel.GetTopLevel(this);
 
             if (workingMovieArchive.Count > safetyCheckMovieArchive.Count)
             {
                 // Try block dumps file into selected file path
                 try
                 {
-                    string filePath = await fileDumpWindow.ShowAsync(this);
-                    await File.WriteAllTextAsync(filePath, JsonConvert.SerializeObject(workingMovieArchive, Formatting.Indented));
+                    var file = await topLevel.StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+                    {
+                        Title = "Save FilmLogger v3 Archive",
+                        FileTypeChoices = new FilePickerFileType[] { new("FilmLogger v3 Archive") { Patterns = new[] { "*.json" }, MimeTypes = new[] { "application/json" } } },
+                        ShowOverwritePrompt = true,
+                        DefaultExtension = "json"
+                    });
+                    if (file != null)
+                    {
+                        await using var stream = await file.OpenWriteAsync();
+                        using var streamWriter = new StreamWriter(stream);
+                        await streamWriter.WriteLineAsync(JsonConvert.SerializeObject(workingMovieArchive, Formatting.Indented));
+                    }
 
                     // Clears working archive and resets film counter
                     workingMovieArchive = new List<Film>();
