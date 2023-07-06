@@ -3,10 +3,9 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using Avalonia.Shared.PlatformSupport;
-using MessageBox.Avalonia;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Models;
+using MsBox.Avalonia;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,12 +30,11 @@ namespace FilmLoggerDotNET
         private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
         private string TMDbLogoPath = "avares://FilmLoggerDotNET/Assets/TMDb_logo.png";
         private string blankPosterPath = "avares://FilmLoggerDotNET/Assets/blank_poster.jpg";
-        private IAssetLoader assetLoader = AvaloniaLocator.Current.GetService<IAssetLoader>();
 
         public MainWindow()
         {
             InitializeComponent();
-            Icon = new WindowIcon(assetLoader.Open(new Uri(iconPath)));
+            Icon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)));
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             // Sets the time dial to ensure that the date the film is seen
@@ -108,19 +106,19 @@ namespace FilmLoggerDotNET
             // Handles when invalid JSON file is loaded
             catch (JsonSerializationException err)
             {
-                var errorBox = MessageBoxManager.GetMessageBoxStandardWindow(new MessageBoxStandardParams
+                var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
                     ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Archive Loading Error",
                     ContentHeader = "Unable to load archive from JSON file",
                     ContentMessage = "Ensure that your JSON file is formatted correctly!",
                     Markdown = true,
-                    Icon = MessageBox.Avalonia.Enums.Icon.Error,
+                    Icon = MsBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
-            });
-                await errorBox.ShowDialog(this);
+                    WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
+                });
+                await errorBox.ShowAsPopupAsync(this);
             }
         }
 
@@ -182,7 +180,7 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Success,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                    WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
         });
                 await successBox.ShowDialog(this);
             }
@@ -206,10 +204,10 @@ namespace FilmLoggerDotNET
                     ContentHeader = "Unable to verify with TMDb that film exists!",
                     ContentMessage = "Check that: \r\n\r\n" + "-Your IMDb ID is valid!\r\n\r\n" + "-Both you and themoviedb.org are online!\r\n\r\n",
                     Markdown = true,
-                    Icon = new Bitmap(assetLoader.Open(new Uri(TMDbLogoPath))),
+                    Icon = new Bitmap(AssetLoader.Open(new Uri(TMDbLogoPath))),
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                    WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
 });
                 await errorBox.ShowDialog(this);
             }
@@ -251,7 +249,7 @@ namespace FilmLoggerDotNET
                         Icon = MessageBox.Avalonia.Enums.Icon.Success,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
-                        WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                        WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
                     await successBox.ShowDialog(this);
                 }
@@ -268,7 +266,7 @@ namespace FilmLoggerDotNET
                         Icon = MessageBox.Avalonia.Enums.Icon.Error,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
-                        WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                        WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
                     await errorBox.ShowDialog(this);
                 }
@@ -286,7 +284,7 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                    WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
                 await errorBox.ShowDialog(this);
             }
@@ -313,7 +311,7 @@ namespace FilmLoggerDotNET
                     Markdown = true,
                     Icon = MessageBox.Avalonia.Enums.Icon.Question,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                    WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
                 var userSelection = await saveBox.ShowDialog(this);
 
@@ -368,7 +366,7 @@ namespace FilmLoggerDotNET
                         Icon = MessageBox.Avalonia.Enums.Icon.Success,
                         WindowStartupLocation = WindowStartupLocation.CenterScreen,
                         SizeToContent = SizeToContent.WidthAndHeight,
-                        WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                        WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
                     await successBox.ShowDialog(this);
                 }
@@ -391,7 +389,7 @@ namespace FilmLoggerDotNET
                     Icon = MessageBox.Avalonia.Enums.Icon.Error,
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     SizeToContent = SizeToContent.WidthAndHeight,
-                    WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                    WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
                 await errorBox.ShowDialog(this);
             }
@@ -424,7 +422,7 @@ namespace FilmLoggerDotNET
                 Markdown = true,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 SizeToContent = SizeToContent.WidthAndHeight,
-                WindowIcon = new WindowIcon(assetLoader.Open(new Uri(iconPath)))
+                WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
             });
             await licenseBox.ShowDialog(this);
         }
