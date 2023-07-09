@@ -71,9 +71,8 @@ A copy of the license is attached in the file [`LICENSE.MD`](https://github.com/
 FilmLogger NT 3.51 uses C# 11 running on .NET 7. It relies upon the following packages:
 
 * Avalonia - v11.0.0 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
-* Avalonia.NameGenerator - v1.6.1 - [MIT License](https://github.com/AvaloniaUI/Avalonia.NameGenerator/blob/main/LICENSE) - Copyright © .NET Foundation and Contributors
-* AsyncImageLoader.Avalonia - v2.5.0 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
-* MessageBox.Avalonia - v2.1.0 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
+* AsyncImageLoader.Avalonia - v3.0.0-avalonia11-preview6 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
+* MessageBox.Avalonia - v3.0.0 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
 * Json.NET - v13.0.3 - [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md) - Copyright © 2007 James Newton-King
 * TMDbLib - v2.0.0 - [MIT License](https://github.com/LordMike/TMDbLib/blob/master/LICENSE.txt) - Copyright © 2016 Michael Bisbjerg
 

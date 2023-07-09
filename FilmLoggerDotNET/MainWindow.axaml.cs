@@ -4,10 +4,9 @@ using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Platform.Storage;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Models;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -103,7 +102,7 @@ namespace FilmLoggerDotNET
             {
                 var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
-                    ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                    ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Archive Loading Error",
                     ContentHeader = "Unable to load archive from JSON file",
                     ContentMessage = "Ensure that your JSON file is formatted correctly!",
@@ -165,7 +164,7 @@ namespace FilmLoggerDotNET
                 // Informs user their film is ready to add to archive
                 var successBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
-                    ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                    ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Film Verified!",
                     ContentHeader = "Your film is ready to add to your archive!",
                     ContentMessage = "Make sure the poster on the right matches your film!",
@@ -232,7 +231,7 @@ namespace FilmLoggerDotNET
                     // MessageBox to indicate Film has been added to working archive
                     var successBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                     {
-                        ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                        ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Film Added to Archive!",
                         ContentHeader = "Your film has been added to the archive!",
                         ContentMessage = "Make sure to save your archive before closing FilmLogger NT 3.51!",
@@ -248,7 +247,7 @@ namespace FilmLoggerDotNET
                     // MessageBox to indicate
                     var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                     {
-                        ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                        ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Date Selection Error",
                         ContentHeader = "You haven't selected a date for when the film was seen!",
                         ContentMessage = "You can't track your films if you don't tell me when you saw it!",
@@ -265,7 +264,7 @@ namespace FilmLoggerDotNET
             {
                 var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
-                    ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                    ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Film Verification Error",
                     ContentHeader = "You haven't verified your film using an IMDb ID!",
                     ContentMessage = "You need to verify your film before you can log it in your archive!",
@@ -349,7 +348,7 @@ namespace FilmLoggerDotNET
 
                     var successBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                     {
-                        ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                        ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                         ContentTitle = "Archive Saved!",
                         ContentHeader = "Your FilmLogger Archive has been saved!",
                         ContentMessage = "The working archive has now been cleared!",
@@ -371,7 +370,7 @@ namespace FilmLoggerDotNET
             {
                 var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
-                    ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                    ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                     ContentTitle = "Save Error",
                     ContentHeader = "Nothing new added to archive!",
                     ContentMessage = "You haven't added any new films, so there's nothing to save!",
@@ -405,7 +404,7 @@ namespace FilmLoggerDotNET
             // is licensed under the terms of AGPLv3-only.
             var licenseBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
-                ButtonDefinitions = MessageBox.Avalonia.Enums.ButtonEnum.Ok,
+                ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                 ContentTitle = "FilmLogger License",
                 ContentMessage = "Copyright © 2023 Jake Landau\r\n\r\n" +
                 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, specifically version 3.\r\n\r\n" +
