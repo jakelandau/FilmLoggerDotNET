@@ -18,8 +18,7 @@ namespace FilmLoggerDotNET
 
             Icon = new WindowIcon(AssetLoader.Open(new System.Uri(iconPath)));
 
-            Button okButton = this.FindControl<Button>("APIOkButton");
-            okButton.Click += OkButtonClick;
+            APIOkButton.Click += OkButtonClick;
         }
 
         private async void OkButtonClick(object? sender, RoutedEventArgs e)
