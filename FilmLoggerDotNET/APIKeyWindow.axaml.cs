@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -29,7 +30,11 @@ namespace FilmLoggerDotNET
 
             // Serializes API Key into secret.json
             string json = JsonConvert.SerializeObject(apiKey, Formatting.Indented);
-            await File.WriteAllTextAsync("secret.json", json);
+            var secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET");
+            Directory.CreateDirectory(secretPath);
+            
+
+            await File.WriteAllTextAsync(Path.Combine(secretPath,"secret.json"), json);
 
             // Closes Window
             Close();

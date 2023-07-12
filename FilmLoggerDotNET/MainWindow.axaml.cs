@@ -119,13 +119,15 @@ namespace FilmLoggerDotNET
 
         private async void VerifyButtonClick(object? sender, RoutedEventArgs e)
         {
+            var secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify),"FilmLoggerDotNET","secret.json");
+
             // Checks if API Key is stored on disk, if not calls GetAPIKey and ends function
-            if (File.Exists("secret.json"))
+            if (File.Exists(secretPath))
             {
                 try
                 {
                     // Deserializes secret.json to obtain API keys
-                    APIKeys = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText("secret.json"));
+                    APIKeys = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(secretPath));
 
                     // Attempts to instance client using API Key
                     webClient = new TMDbClient(APIKeys["TMDbAPI"]);
@@ -406,7 +408,7 @@ namespace FilmLoggerDotNET
             {
                 ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                 ContentTitle = "FilmLogger License",
-                ContentMessage = "Copyright © 2023 Jake Landau\r\n\r\n" +
+                ContentMessage = "Copyright ï¿½ 2023 Jake Landau\r\n\r\n" +
                 "This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, specifically version 3.\r\n\r\n" +
                 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty\r\n\r\n of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License, version 3 for more details.\r\n\r\n" +
                 "A copy of the license is attached in the file `LICENSE.MD`, included in the program folder.",
