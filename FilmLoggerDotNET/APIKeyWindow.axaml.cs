@@ -2,10 +2,10 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 namespace FilmLoggerDotNET
 {
@@ -28,12 +28,12 @@ namespace FilmLoggerDotNET
             apiKey.Add("TMDbAPI", TMDbAPIKey.Text);
 
             // Serializes API Key into secret.json
-            string json = JsonConvert.SerializeObject(apiKey, Formatting.Indented);
+            string apiKeyJSON = System.Text.Json.JsonSerializer.Serialize(apiKey, new JsonSerializerOptions { WriteIndented = true });
             var secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET");
             Directory.CreateDirectory(secretPath);
             
 
-            await File.WriteAllTextAsync(Path.Combine(secretPath,"secret.json"), json);
+            await File.WriteAllTextAsync(Path.Combine(secretPath,"secret.json"), apiKeyJSON);
 
             // Closes Window
             Close();

@@ -7,11 +7,11 @@ using Avalonia.Platform.Storage;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Text.Json;
 using TMDbLib.Client;
 using TMDbLib.Objects.Movies;
 
@@ -80,7 +80,7 @@ namespace FilmLoggerDotNET
                     await using var stream = await files[0].OpenReadAsync();
                     using var streamReader = new StreamReader(stream);
                     var JSONString = await streamReader.ReadToEndAsync();
-                    workingMovieArchive = JsonConvert.DeserializeObject<List<Film>>(JSONString);
+                    workingMovieArchive = JsonSerializer.Deserialize<List<Film>>(JSONString);
 
                     // Grabs file name from file path and displays it
                     FileName.Text = files[0].Name;
@@ -98,7 +98,7 @@ namespace FilmLoggerDotNET
                 // PASS
             }
             // Handles when invalid JSON file is loaded
-            catch (JsonSerializationException err)
+            catch (JsonException err)
             {
                 var errorBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
                 {
@@ -127,7 +127,7 @@ namespace FilmLoggerDotNET
                 try
                 {
                     // Deserializes secret.json to obtain API keys
-                    APIKeys = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(secretPath));
+                    APIKeys = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(secretPath));
 
                     // Attempts to instance client using API Key
                     webClient = new TMDbClient(APIKeys["TMDbAPI"]);
@@ -340,7 +340,7 @@ namespace FilmLoggerDotNET
                     {
                         await using var stream = await file.OpenWriteAsync();
                         using var streamWriter = new StreamWriter(stream);
-                        await streamWriter.WriteLineAsync(JsonConvert.SerializeObject(workingMovieArchive, Formatting.Indented));
+                        await streamWriter.WriteLineAsync(JsonSerializer.Serialize(workingMovieArchive, new JsonSerializerOptions { WriteIndented = true }));
                     }
 
                     // Clears working archive and resets film counter
