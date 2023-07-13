@@ -1,3 +1,4 @@
+using AsyncImageLoader.Loaders;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -57,6 +58,9 @@ namespace FilmLoggerDotNET
 
             // Ensures user has chance to save before closing application
             Closing += MainWindowClosing;
+
+            // Sets Poster Image to cache posters to disk in AppData/$HOME
+            PosterImage.Loader = new DiskCachedWebImageLoader(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET", "Cache"));
         }
 
 
