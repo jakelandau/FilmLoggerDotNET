@@ -70,9 +70,9 @@ A copy of the license is attached in the file [`LICENSE.MD`](https://github.com/
 ## Dependencies
 FilmLogger NT 3.51 uses C# 11 running on .NET 7. It relies upon the following packages:
 
-* Avalonia - v11.0.0 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
-* AsyncImageLoader.Avalonia - v3.0.0-avalonia11-preview6 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
-* MessageBox.Avalonia - v3.0.0 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
+* Avalonia - v11.0.2 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
+* AsyncImageLoader.Avalonia - v3.1.0 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
+* MessageBox.Avalonia - v3.1.2 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
 * TMDbLib - v2.0.0 - [MIT License](https://github.com/LordMike/TMDbLib/blob/master/LICENSE.txt) - Copyright © 2016 Michael Bisbjerg
 
-NOTE: The entirety of FilmLogger is licensed under the terms of the AGPLv3-or-later. The above MIT Licenses only apply to these packages when obtained from the upstream sources; the downstream versions included in FilmLogger become licensed under the AGPLv3-or-later through it's viral features.
+NOTE: The entirety of FilmLogger is licensed under the terms of the AGPLv3-or-later. The above MIT Licenses only apply to these packages when obtained from the upstream sources; the downstream versions distributed in the FilmLogger binary become licensed under the AGPLv3-or-later license through it's viral features.
