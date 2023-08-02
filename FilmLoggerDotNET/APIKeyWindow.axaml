@@ -5,7 +5,10 @@
         xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="165"
         x:Class="FilmLoggerDotNET.APIKeyWindow"
-        Title="TMDb API Key" SizeToContent="WidthAndHeight">
+        Title="TMDb API Key" SizeToContent="WidthAndHeight"
+        TransparencyLevelHint="Mica"
+        Background="Transparent"
+        RequestedThemeVariant="Dark">
   <Window.Styles>
     <Style Selector="TextBlock">
       <Setter Property="FontSize" Value="16"/>

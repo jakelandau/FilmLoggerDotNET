@@ -115,7 +115,7 @@ namespace FilmLoggerDotNET
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                await errorBox.ShowWindowDialogAsync(this);
+                await errorBox.ShowAsPopupAsync(this);
             }
         }
 
@@ -179,7 +179,7 @@ namespace FilmLoggerDotNET
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
         });
-                await successBox.ShowWindowDialogAsync(this);
+                await successBox.ShowAsPopupAsync(this);
             }
             catch
             {
@@ -205,7 +205,7 @@ namespace FilmLoggerDotNET
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
 });
-                await errorBox.ShowWindowDialogAsync(this);
+                await errorBox.ShowAsPopupAsync(this);
             }
         }
 
@@ -246,7 +246,7 @@ namespace FilmLoggerDotNET
                         SizeToContent = SizeToContent.WidthAndHeight,
                         WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
-                    await successBox.ShowWindowDialogAsync(this);
+                    await successBox.ShowAsPopupAsync(this);
                 }
                 else
                 {
@@ -262,7 +262,7 @@ namespace FilmLoggerDotNET
                         SizeToContent = SizeToContent.WidthAndHeight,
                         WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
-                    await errorBox.ShowWindowDialogAsync(this);
+                    await errorBox.ShowAsPopupAsync(this);
                 }
             }
             // Informs user the verification latch has not been released
@@ -279,7 +279,7 @@ namespace FilmLoggerDotNET
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                await errorBox.ShowWindowDialogAsync(this);
+                await errorBox.ShowAsPopupAsync(this);
             }
         }
 
@@ -305,7 +305,7 @@ namespace FilmLoggerDotNET
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                var userSelection = await saveBox.ShowWindowDialogAsync(this);
+                var userSelection = await saveBox.ShowAsPopupAsync(this);
 
                 /* If the user picks yes, saves the file and closes. If the
                  user picks no, sets the working archive equal to the safety
@@ -363,7 +363,7 @@ namespace FilmLoggerDotNET
                         SizeToContent = SizeToContent.WidthAndHeight,
                         WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                     });
-                    await successBox.ShowWindowDialogAsync(this);
+                    await successBox.ShowAsPopupAsync(this);
                 }
                 // Handles when file has not been selected
                 catch (ArgumentNullException err)
@@ -385,7 +385,7 @@ namespace FilmLoggerDotNET
                     SizeToContent = SizeToContent.WidthAndHeight,
                     WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
                 });
-                await errorBox.ShowWindowDialogAsync(this);
+                await errorBox.ShowAsPopupAsync(this);
             }
         }
 
@@ -407,21 +407,20 @@ namespace FilmLoggerDotNET
         private async void ShowFilmLoggerLicense(object? sender, RoutedEventArgs e)
         {
             // Displays software license for FilmLogger, indicating the program
-            // is licensed under the terms of AGPLv3-only.
+            // is licensed under the terms of AGPLv3
             var licenseBox = MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams
             {
                 ButtonDefinitions = MsBox.Avalonia.Enums.ButtonEnum.Ok,
                 ContentTitle = "FilmLogger License",
-                ContentMessage = "Copyright � 2023 Jake Landau\r\n\r\n" +
-                "This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, specifically version 3.\r\n\r\n" +
+                ContentMessage = "Copyright 2023 Jake Landau\r\n\r\n" +
+                "This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\r\n\r\n" +
                 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty\r\n\r\n of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License, version 3 for more details.\r\n\r\n" +
                 "A copy of the license is attached in the file `LICENSE.MD`, included in the program folder.",
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 SizeToContent = SizeToContent.WidthAndHeight,
-                WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath))),
-                Markdown = true
+                WindowIcon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)))
             });
-            await licenseBox.ShowWindowDialogAsync(this);
+            await licenseBox.ShowAsPopupAsync(this);
         }
     }
 }
