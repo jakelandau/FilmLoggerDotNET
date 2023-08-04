@@ -3,9 +3,9 @@
     "Windows 10/11": {
       "commandName": "Project"
     },
-    "WSL2 - Ubuntu": {
+    "WSL2 - Ubuntu 22.04": {
       "commandName": "WSL",
-      "distributionName": "Ubuntu"
+      "distributionName": "Ubuntu-22.04"
     },
     "WSL2 - Fedora Remix": {
       "commandName": "WSL",
