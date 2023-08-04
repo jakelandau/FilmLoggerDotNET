@@ -31,8 +31,7 @@
     <PackageReference Include="TMDbLib" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <!--Necessary for blank poster bitmap to load from relative path-->
-    <AvaloniaResource Include="Assets\blank_poster.jpg" />
+    <AvaloniaResource Include="Assets\blank_poster.png" />
     <AvaloniaResource Include="Assets\icon.png" />
     <AvaloniaResource Include="Assets\TMDb_logo.png" />
   </ItemGroup>
