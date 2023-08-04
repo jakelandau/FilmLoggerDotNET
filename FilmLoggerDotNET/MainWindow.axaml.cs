@@ -39,8 +39,8 @@ namespace FilmLoggerDotNET
             Icon = new WindowIcon(AssetLoader.Open(new Uri(iconPath)));
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            // Fallback due to lack of Mica brush on Linux and Mac
-            if (!System.OperatingSystem.IsWindows())
+            // Fallback due to lack of Mica brush on Windows 10, Linux and Mac
+            if (!System.OperatingSystem.IsWindowsVersionAtLeast(10,0,22000,0))
             {
                 TransparencyLevelHint = new List<WindowTransparencyLevel>() { WindowTransparencyLevel.None };
                 var BackgroundGradient = new LinearGradientBrush()
@@ -56,7 +56,6 @@ namespace FilmLoggerDotNET
                     EndPoint = Avalonia.RelativePoint.BottomRight
                 };
                 Background = BackgroundGradient;
-                
             }
 
             // Sets the time dial to ensure that the date the film is seen
