@@ -65,7 +65,7 @@
 
       <!--Row 1-->
       <TextBlock Text="IMDb ID:" Grid.Row="1" Grid.Column="0"/>
-      <MaskedTextBox x:Name="IMDbID" Mask="tt0000000" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+      <TextBox x:Name="IMDbID" Grid.Row="1" Grid.Column="2"/>
 
       <!--Row 2-->
       <CheckBox x:Name="SeenInTheatresBool" Content="Seen in theaters?" Grid.Row="2" Grid.Column="0"/>
