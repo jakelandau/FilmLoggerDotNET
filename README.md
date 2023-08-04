@@ -14,7 +14,7 @@ With the power of the new NT Kernel, this is no longer FilmLogger 3.11 For Workg
 
 FilmLogger is an app for Windows and Linux that lets you track what films you watched, when you watched them, and whether you watched at home or at the theater!
 
-![Screenshot of the FilmLogger 3.11 For Workgroups App](https://imgur.com/c05QaXd.jpg)
+![Screenshot of the FilmLogger NT 3.51 App](DemoScreenshot.png)
 
 When you open FilmLogger, you can start adding films immediately, or open a previously saved archive to add more.
 
