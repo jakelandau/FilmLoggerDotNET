@@ -11,23 +11,24 @@
         RequestedThemeVariant="Dark">
   <Window.Styles>
     <Style Selector="Button">
-      <Setter Property="FontSize" Value="16"/>
-      <Setter Property="FontWeight" Value="Bold"/>
-      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
       <Setter Property="HorizontalContentAlignment" Value="Center"/>
       <Setter Property="CornerRadius" Value="9"/>
+      <Setter Property="MinWidth" Value="145"/>
     </Style>
 
     <Style Selector="TextBlock">
-      <Setter Property="FontSize" Value="16"/>
-      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 
     <Style Selector="CheckBox">
-      <Setter Property="FontSize" Value="16"/>
-      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
@@ -40,12 +41,13 @@
   </Window.Styles>
   <StackPanel>
     <Menu>
-      <MenuItem Header="_File">
+      <MenuItem x:Name="FileMenu" Header="_File">
         <MenuItem x:Name="OpenFileMenu" Header="_Open"></MenuItem>
         <MenuItem x:Name="DumpFileMenu" Header="_Save"></MenuItem>
       </MenuItem>
-      <MenuItem Header="_Config">
+      <MenuItem x:Name="ConfigMenu" Header="_Config">
         <MenuItem x:Name="APIKeyMenu" Header="_API Key"></MenuItem>
+        <Separator></Separator>
         <MenuItem x:Name="LicenseMenu" Header="_License"></MenuItem>
       </MenuItem>
     </Menu>
@@ -59,18 +61,18 @@
       <TextBlock x:Name="FileName" Text="" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
       <asyncImageLoader:AdvancedImage x:Name="PosterImage"
              Height="350" Grid.Row="0" Grid.Column="3" Grid.RowSpan="4"
-             Source="./Assets/blank_poster.jpg"/>
+             Source="./Assets/blank_poster.png"/>
 
       <!--Row 1-->
       <TextBlock Text="IMDb ID:" Grid.Row="1" Grid.Column="0"/>
-      <TextBox x:Name="IMDbID" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+      <MaskedTextBox x:Name="IMDbID" Mask="tt0000000" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
 
       <!--Row 2-->
       <CheckBox x:Name="SeenInTheatresBool" Content="Seen in theaters?" Grid.Row="2" Grid.Column="0"/>
       <Button x:Name="VerifyButton" Content="Verify" Grid.Row="2" Grid.Column="2"/>
 
       <!--Row 3-->
-      <DatePicker x:Name="DateSeen" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"/>
+      <DatePicker x:Name="DateSeen" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"/>
 
       <!--Row 4-->
       <Button x:Name="AddMovie" Content="Add to Archive" Grid.Row="4" Grid.Column="0"/>
