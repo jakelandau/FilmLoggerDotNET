@@ -40,7 +40,7 @@ namespace FilmLoggerDotNET
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             // Fallback due to lack of Mica brush on Windows 10, Linux and Mac
-            if (!System.OperatingSystem.IsWindowsVersionAtLeast(10,0,22000,0))
+            if (!System.OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000, 0))
             {
                 TransparencyLevelHint = new List<WindowTransparencyLevel>() { WindowTransparencyLevel.None };
                 var BackgroundGradient = new LinearGradientBrush()
