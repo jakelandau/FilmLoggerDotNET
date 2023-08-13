@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FilmLoggerDotNET
+﻿namespace FilmLoggerDotNET
 {
     public class Film
     {
