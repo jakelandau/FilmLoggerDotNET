@@ -35,9 +35,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.3" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.3" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.1.4" />
-    <!--Condition below only includes native assets for linux when building for linux,
-    because including those on Windows too doesn't make much sense lol-->
-    <PackageReference Condition="$([MSBuild]::IsOSPlatform('Linux'))" Include="SkiaSharp.NativeAssets.Linux" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.3" />
     <PackageReference Include="TMDbLib" Version="2.0.0" />
     <!--Packages need to be pinned because TMDbLib 2.0 keeps trying to force downgrade to 4.0.11
     That dependency hasn't been updated in a while but it's pretty necessary so I might have to
