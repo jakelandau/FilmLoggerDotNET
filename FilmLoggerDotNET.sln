@@ -4,6 +4,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmLoggerDotNET", "FilmLoggerDotNET\FilmLoggerDotNET.csproj", "{508DDA53-720C-4C47-951F-054DFD7720EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilmLoggerDotNETUnitTests", "FilmLoggerDotNETUnitTests\FilmLoggerDotNETUnitTests.csproj", "{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,22 @@ Global
 		{508DDA53-720C-4C47-951F-054DFD7720EA}.Release|x64.Build.0 = Release|Any CPU
 		{508DDA53-720C-4C47-951F-054DFD7720EA}.Release|x86.ActiveCfg = Release|Any CPU
 		{508DDA53-720C-4C47-951F-054DFD7720EA}.Release|x86.Build.0 = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|ARM64.Build.0 = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|x64.Build.0 = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC28BC69-F1CD-4193-9B3F-93D7BC52AC71}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
