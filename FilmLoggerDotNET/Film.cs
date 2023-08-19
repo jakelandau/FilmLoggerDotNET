@@ -8,10 +8,5 @@
         public bool? theater { get; set; }
         public string? title { get; set; }
         public int? year { get; set; }
-
-        public string summary()
-        {
-            return $"{title} - {year}-{month}-{day} - In Theater: {theater} - {imdb_id}";
-        }
     }
 }
