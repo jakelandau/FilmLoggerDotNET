@@ -1,15 +1,20 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Headless;
+using Avalonia.Headless.XUnit;
 using FilmLoggerDotNET;
+using FilmLoggerDotNETUnitTests;
 
+[assembly: AvaloniaTestApplication(typeof(LogicTests))]
 namespace FilmLoggerDotNETUnitTests
 {
+	
     public class LogicTests
     {
-        [Theory]
-        [InlineData("tt9362722")] // Spider-Man: Across the Spider-Verse
-        [InlineData("tt9362552")] // Daldalita: Episode #1.1
-        [InlineData("tt936552")]  // 404 Error
-        public void VerifyFilmTest(string IMDbID)
+		public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>().UseHeadless(new AvaloniaHeadlessPlatformOptions());
+
+		[AvaloniaFact]
+        public void VerifyFilmTest()
         {
 
         }
