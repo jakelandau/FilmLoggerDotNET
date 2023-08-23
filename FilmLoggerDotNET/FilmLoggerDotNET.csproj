@@ -47,4 +47,7 @@
     <AvaloniaResource Include="Assets\icon.png" />
     <AvaloniaResource Include="Assets\TMDb_logo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 </Project>
