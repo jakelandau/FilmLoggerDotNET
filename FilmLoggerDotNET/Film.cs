@@ -1,12 +1,22 @@
-﻿namespace FilmLoggerDotNET
+﻿using System.Text.Json.Serialization;
+using System.Collections.Generic;
+
+namespace FilmLoggerDotNET
 {
     public class Film
     {
-        public int? day { get; set; }
-        public string? imdb_id { get; set; }
-        public int? month { get; set; }
-        public bool? theater { get; set; }
-        public string? title { get; set; }
-        public int? year { get; set; }
+        public int? Day { get; set; }
+        public string? ImdbId { get; set; }
+        public int? Month { get; set; }
+        public bool? Theater { get; set; }
+        public string? Title { get; set; }
+        public int? Year { get; set; }
+    }
+
+    [JsonSourceGenerationOptions(WriteIndented = true)]
+    [JsonSerializable(typeof(List<Film>))]
+    internal partial class FilmSerializerContext : JsonSerializerContext
+    {
+
     }
 }
