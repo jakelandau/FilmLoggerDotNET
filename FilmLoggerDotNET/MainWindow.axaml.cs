@@ -13,6 +13,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+using System.Threading.Tasks;
 using TMDbLib.Client;
 using TMDbLib.Objects.Movies;
 
@@ -23,15 +26,15 @@ namespace FilmLoggerDotNET
         private List<Film> workingMovieArchive = new List<Film>(); // Working archive of all movies user has watched
         private List<Film> safetyCheckMovieArchive = new List<Film>(); // Copy of above made for safety check; if working archive doesn't match safety check, data has not been saved
 
-        private Dictionary<string, string> APIKeys; // Dictionary of API Keys, loaded in and out of secret.json
+        private Dictionary<string, string> APIKeys = new Dictionary<string, string>(); // Dictionary of API Keys, loaded in and out of secret.json
         private TMDbClient webClient; // Client for accessing TheMovieDB API
 
         private Film currentMovie = new Film(); // Film object in buffer to add to working archive
         private bool isVerified = false; // Latch to ensure IMDb ID has been verified before attempting to add to archive
 
-        private string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
-        private string TMDbLogoPath = "avares://FilmLoggerDotNET/Assets/TMDb_logo.png";
-        private string blankPosterPath = "avares://FilmLoggerDotNET/Assets/blank_poster.png";
+        private readonly string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
+        private readonly string TMDbLogoPath = "avares://FilmLoggerDotNET/Assets/TMDb_logo.png";
+        private readonly string blankPosterPath = "avares://FilmLoggerDotNET/Assets/blank_poster.png";
 
         public MainWindow()
         {
@@ -90,7 +93,7 @@ namespace FilmLoggerDotNET
             // Try block reads JSON file into working archive
             try
             {
-                var files = await topLevel.StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+                var files = await topLevel!.StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
                 {
                     Title = "Open FilmLogger v3 Archive",
                     AllowMultiple = false,
@@ -105,11 +108,13 @@ namespace FilmLoggerDotNET
                     var JSONString = await streamReader.ReadToEndAsync();
                     workingMovieArchive = JsonSerializer.Deserialize<List<Film>>(JSONString);
 
+                    workingMovieArchive = JsonSerializer.Deserialize(json: JSONString, jsonTypeInfo: FilmSerializerContext.Default.ListFilm)!;
+                    
                     // Grabs file name from file path and displays it
                     FileName.Text = files[0].Name;
 
                     // Copies working archive for dump safety checks
-                    safetyCheckMovieArchive = new List<Film>(workingMovieArchive);
+                    safetyCheckMovieArchive = new List<Film>(workingMovieArchive!);
 
                     // Updates Film Count Ticker
                     UpdateFilmCount();
@@ -150,7 +155,7 @@ namespace FilmLoggerDotNET
                 try
                 {
                     // Deserializes secret.json to obtain API keys
-                    APIKeys = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(secretPath));
+                    APIKeys = JsonSerializer.Deserialize<Dictionary<string,string>>(json: File.ReadAllText(secretPath));
 
                     // Attempts to instance client using API Key
                     webClient = new TMDbClient(APIKeys["TMDbAPI"]);
@@ -235,11 +240,12 @@ namespace FilmLoggerDotNET
             {
                 if (DateSeen.SelectedDate != null)
                 {
-                    // Sets parameters of buffer Film
-                    currentMovie.theater = (bool)SeenInTheatresBool.IsChecked ? true : false;
-                    currentMovie.day = DateSeen.SelectedDate.Value.Day;
-                    currentMovie.month = DateSeen.SelectedDate.Value.Month;
-                    currentMovie.year = DateSeen.SelectedDate.Value.Year;
+                    // Sets parameters of buffer Film, since checkboxes are nullable
+                    // we use the null-coalescing operator to assign false if null
+                    currentMovie.Theater = SeenInTheatresBool.IsChecked ?? false;
+                    currentMovie.Day = DateSeen.SelectedDate.Value.Day;
+                    currentMovie.Month = DateSeen.SelectedDate.Value.Month;
+                    currentMovie.Year = DateSeen.SelectedDate.Value.Year;
 
                     // Adds buffer Film
                     workingMovieArchive.Add(currentMovie);
@@ -302,7 +308,7 @@ namespace FilmLoggerDotNET
             }
         }
 
-        private async void MainWindowClosing(object sender, CancelEventArgs e)
+        private async void MainWindowClosing(object? sender, CancelEventArgs e)
         {
             // Checks if unsaved film watching data is present
             if (workingMovieArchive.Count > safetyCheckMovieArchive.Count)
@@ -352,18 +358,21 @@ namespace FilmLoggerDotNET
                 // Try block dumps file into selected file path
                 try
                 {
-                    var file = await topLevel.StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
+                    // File Selector for choosing save path
+                    var file = await topLevel!.StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions
                     {
                         Title = "Save FilmLogger v3 Archive",
                         FileTypeChoices = new FilePickerFileType[] { new("FilmLogger v3 Archive") { Patterns = new[] { "*.json" }, MimeTypes = new[] { "application/json" } } },
                         ShowOverwritePrompt = true,
                         DefaultExtension = "json"
                     });
+
                     if (file != null)
                     {
+                        // Writes on async worker thread to file path
                         await using var stream = await file.OpenWriteAsync();
                         using var streamWriter = new StreamWriter(stream);
-                        await streamWriter.WriteLineAsync(JsonSerializer.Serialize(workingMovieArchive, new JsonSerializerOptions { WriteIndented = true }));
+                        await streamWriter.WriteLineAsync(JsonSerializer.Serialize(workingMovieArchive, jsonTypeInfo: FilmSerializerContext.Default.ListFilm));
 
                         // Clears working archive and resets film counter
                         workingMovieArchive = new List<Film>();
