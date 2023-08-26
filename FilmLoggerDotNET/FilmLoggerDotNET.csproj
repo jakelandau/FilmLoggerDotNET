@@ -35,7 +35,7 @@
     a bad idea.-->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <!--This needs to be included for Linux binaries to run when published-->
-    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.4" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.5" />
     <!--This library is barely being maintained anymore, but the business logic relies on it.
     If the dev finds a new maintainer then we'll keep it, otherwise I may have to just reimplement
     our subset of API calls myself since I'm not gonna maintain a whole fork if I barely use most of
