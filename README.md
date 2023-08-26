@@ -2,11 +2,13 @@
 
 ![GitHub all releases](https://img.shields.io/github/downloads/jakelandau/FilmLoggerDotNET/total) ![GitHub last commit](https://img.shields.io/github/last-commit/jakelandau/filmloggerdotnet) ![GitHub issues](https://img.shields.io/github/issues/jakelandau/FilmLoggerDotNET) ![GitHub](https://img.shields.io/github/license/JakeLandau/FilmLoggerDotNET)
 
-With the creation of FilmLogger in 2016, and the refactoring of FilmLogger v2 in 2021, we took Python and Tkinter as far as they could go. It turns out those really don't get very far.
+I built FilmLogger in 2016, and refactored it into FilmLogger v2 in 2021, and we took Python and Tkinter as far as they could go.
 
-Built with Steve Ballmer's next-generation .NET framework, combined with the bold new frontier of the Information Superhighway, FilmLogger has a new lease on life. Welcome to the third generation of FilmLogger technology.
+It turns out those don't go very far.
 
-With the power of the new NT Kernel, this is no longer FilmLogger 3.11 For Workgroups. *This,* is:
+Built with Steve Ballmer's next-generation .NET technology, combined with the bold new frontier of the Information Superhighway, FilmLogger has a new lease on life. Welcome to the third generation of FilmLogger software.
+
+And now, with the added power of the new NT Kernel, this is no longer FilmLogger 3.11 For Workgroups. *This,* is:
 
 # FilmLogger NT 3.51
 
@@ -36,26 +38,28 @@ FilmLogger stores data in an *open* `JSON` format, the `FilmLogger v3 standard`!
 ```json
 [
     {
-        "imdb_id":"tt1160419",
-        "title":"Dune",
-        "theater":true,
-        "day":21,
-        "month":11,
-        "year":2021
+        "Order":1,
+        "ImdbId":"tt1160419",
+        "Title":"Dune",
+        "Theater":true,
+        "Day":21,
+        "Month":11,
+        "Year":2021
     },
     {
-        "imdb_id":"tt8097030",
-        "title":"Turning Red",
-        "theater":false,
-        "day":3,
-        "month":4,
-        "year":2022
+        "Order":2,
+        "ImdbId":"tt8097030",
+        "Title":"Turning Red",
+        "Theater":false,
+        "Day":3,
+        "Month":4,
+        "Year":2022
     },
     ... (and so on)
 ]
 ```
 
-The order you put the movies *doesn't actually matter*; computers are pretty smart and any software compatible with the `FilmLogger v3 Standard` can sort your saved `JSON` archive based on the dates of each movie!
+Make sure that each film has a unique Order number, and that go from `1..X` in sequence with no gaps. This only matters if you're making the `JSON` file manually; if you use FilmLogger, or any other software compatible with the `FilmLogger v3 Standard`, it will handle the ordering for you.
 
 ## License
 
@@ -70,9 +74,14 @@ A copy of the license is attached in the file [`LICENSE.MD`](https://github.com/
 ## Dependencies
 FilmLogger NT 3.51 uses C# 11 running on .NET 7. It relies upon the following packages:
 
-* Avalonia - v11.0.3 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
+* Avalonia - v11.0.4 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
 * AsyncImageLoader.Avalonia - v3.2.0 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
 * MessageBox.Avalonia - v3.1.4 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
+* Newtonsoft.Json - v13.0.3 - [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md) - Copyright © 2007 James Newton-King
 * TMDbLib - v2.0.0 - [MIT License](https://github.com/LordMike/TMDbLib/blob/master/LICENSE.txt) - Copyright © 2016 Michael Bisbjerg
 
-NOTE: The entirety of FilmLogger is licensed under the terms of the AGPLv3-or-later. The above MIT Licenses only apply to these packages when obtained from the upstream sources; the downstream versions distributed in the FilmLogger binary become licensed under the AGPLv3-or-later license through it's viral features.
+FilmLogger's Unit Tests depend upon the following additional packages:
+* XUnit - v2.5.0 - [Apache 2.0 License](https://github.com/xunit/xunit/blob/main/LICENSE) - Copyright © .NET Foundation and Contributors
+* XUnit.Runner.VisualStudio - v2.5.0 - [Apache 2.0 License](https://github.com/xunit/visualstudio.xunit/blob/main/License.txt) - Copyright © .NET Foundation and Contributors
+
+NOTE: The entirety of FilmLogger is licensed under the terms of the AGPLv3-or-later. The above licenses only apply to these packages when obtained from the upstream sources; the downstream versions distributed in the FilmLogger binary become licensed under the AGPLv3-or-later license through it's viral features.
