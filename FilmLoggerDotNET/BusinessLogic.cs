@@ -23,8 +23,7 @@ namespace FilmLoggerDotNET
 
 		public bool IsVerified() { return isVerified; }
 		public List<Film> WorkingMovieArchive() { return workingMovieArchive; }
-		public int GetFilmCount() { return workingMovieArchive.Count; }
-		public int GetSafetyCount() { return safetyCheckMovieArchive.Count; }
+		public List<Film> SafetyCheckMovieArchive() { return safetyCheckMovieArchive; }
 
 		public void CreateWebClient()
 		{

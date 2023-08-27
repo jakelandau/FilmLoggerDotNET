@@ -12,11 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using TMDbLib.Client;
-using TMDbLib.Objects.Movies;
 
 namespace FilmLoggerDotNET
 {
@@ -244,7 +241,7 @@ namespace FilmLoggerDotNET
 		private async void MainWindowClosing(object? sender, CancelEventArgs e)
 		{
 			// Checks if unsaved film watching data is present
-			if (logicProcessor.GetFilmCount() > logicProcessor.GetSafetyCount())
+			if (logicProcessor.WorkingMovieArchive().Count > logicProcessor.SafetyCheckMovieArchive().Count)
 			{
 				// Cancels window close event
 				e.Cancel = true;
@@ -287,7 +284,7 @@ namespace FilmLoggerDotNET
 		{
 			var topLevel = TopLevel.GetTopLevel(this);
 
-			if (logicProcessor.GetFilmCount() > logicProcessor.GetSafetyCount())
+			if (logicProcessor.WorkingMovieArchive().Count > logicProcessor.SafetyCheckMovieArchive().Count)
 			{
 				// Try block dumps file into selected file path
 				try
@@ -328,7 +325,7 @@ namespace FilmLoggerDotNET
 				}
 			}
 			// Bypasses file dump if no new data has been added
-			else if (logicProcessor.GetFilmCount() == logicProcessor.GetSafetyCount())
+			else if (logicProcessor.WorkingMovieArchive().Count == logicProcessor.SafetyCheckMovieArchive().Count)
 			{
 				await ShowMessageBoxAsync(isCustom: false,
 					contentTitle: "Save Error",
@@ -342,7 +339,7 @@ namespace FilmLoggerDotNET
 		private void UpdateFilmCount()
 		{
 			// Updates visual film count indicator on screen
-			int count = logicProcessor.GetFilmCount();
+			int count = logicProcessor.WorkingMovieArchive().Count;
 			ArchiveCount.Text = $"Film Count: {count}";
 		}
 
