@@ -34,6 +34,8 @@ namespace FilmLoggerDotNET.Tests
 		[InlineData("tt9365522")] // Bairi Piya Episode #1.105
 		[InlineData("tt0000")] // 404 Error
 		[InlineData("tt0903747")] // Breaking Bad (2008-2013)
+		[InlineData("")] // Blank String
+		[InlineData(null)] // null input
 		public async Task VerifyFilmNegativeTest(string searchKey)
 		{
 			var testLogicProcessor = new BusinessLogic
