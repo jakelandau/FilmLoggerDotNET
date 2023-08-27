@@ -1,5 +1,4 @@
 ﻿using Avalonia.Platform.Storage;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +6,6 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TMDbLib.Client;
-using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 
 namespace FilmLoggerDotNET
@@ -24,7 +22,7 @@ namespace FilmLoggerDotNET
 		private bool isVerified = false; // Latch to ensure IMDb ID has been verified before attempting to add to archive
 
 		public bool IsVerified() { return isVerified; }
-
+		public List<Film> WorkingMovieArchive() { return workingMovieArchive; }
 		public int GetFilmCount() { return workingMovieArchive.Count; }
 		public int GetSafetyCount() { return safetyCheckMovieArchive.Count; }
 
