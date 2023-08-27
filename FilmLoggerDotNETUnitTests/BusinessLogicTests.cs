@@ -74,7 +74,30 @@ namespace FilmLoggerDotNET.Tests
 
 			// Verifies that the film added fourth is sorted to the third index
 			// based on it's date relative to the other film's watchdates.
-			Assert.Equal(testLogicProcessor.WorkingMovieArchive()[2].Day, 25);
+			Assert.Equal(25, testLogicProcessor.WorkingMovieArchive()[2].Day);
+		}
+
+		[Fact]
+		public async Task VerifyEraseWorkingArchive()
+		{
+			var testLogicProcessor = new BusinessLogic
+			{
+				APIKey = APIKeys!["TMDbAPI"]
+			};
+			testLogicProcessor.CreateWebClient();
+
+			// Creates one film on date 2014-12-03
+			await testLogicProcessor.VerifyFilmAsync("tt1375666"); // Inception (2010)
+			testLogicProcessor.AddFilmToArchive(true, 3, 12, 2014);
+
+			// Asserts that there is a single film in the working archive
+			Assert.Single(testLogicProcessor.WorkingMovieArchive());
+
+			// Erases working archive
+			testLogicProcessor.EraseWorkingArchive();
+
+			// Asserts that the working archive is empty
+			Assert.Empty(testLogicProcessor.WorkingMovieArchive());
 		}
 	}
 }
