@@ -48,7 +48,7 @@ namespace FilmLoggerDotNET.Tests
 		}
 
 		[Fact]
-		public async Task VerifyWorkingArchiveSort()
+		public async Task WorkingArchiveSortTest()
 		{
 
 			var testLogicProcessor = new BusinessLogic
@@ -78,7 +78,7 @@ namespace FilmLoggerDotNET.Tests
 		}
 
 		[Fact]
-		public async Task VerifyEraseWorkingArchive()
+		public async Task EraseWorkingArchiveTest()
 		{
 			var testLogicProcessor = new BusinessLogic
 			{
@@ -98,6 +98,7 @@ namespace FilmLoggerDotNET.Tests
 
 			// Asserts that the working archive is empty
 			Assert.Empty(testLogicProcessor.WorkingMovieArchive());
+			Assert.Empty(testLogicProcessor.SafetyCheckMovieArchive());
 		}
 	}
 }
