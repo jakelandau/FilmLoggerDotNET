@@ -20,11 +20,10 @@ namespace FilmLoggerDotNET.Tests
 		[InlineData("tt0095327", "https://image.tmdb.org/t/p/w500/k9tv1rXZbOhH7eiCk378x61kNQ1.jpg")] // Grave of the Fireflies (1988)
 		public async Task VerifyFilmPositiveTest(string searchKey, string correctResponse)
         {
-			// Instances Test Object for BusinessLogic
-			var testLogicProcessor = new BusinessLogic();
-
-			// Attempts to instance client using API Key
-			testLogicProcessor.APIKey = APIKeys!["TMDbAPI"];
+			var testLogicProcessor = new BusinessLogic
+			{
+				APIKey = APIKeys!["TMDbAPI"]
+			};
 			testLogicProcessor.CreateWebClient();
 
 			var posterPath = await testLogicProcessor.VerifyFilmAsync(searchKey);
@@ -37,11 +36,10 @@ namespace FilmLoggerDotNET.Tests
 		[InlineData("tt0903747")] // Breaking Bad (2008-2013)
 		public async Task VerifyFilmNegativeTest(string searchKey)
 		{
-			// Instances Test Object for BusinessLogic
-			var testLogicProcessor = new BusinessLogic();
-
-			// Attempts to instance client using API Key
-			testLogicProcessor.APIKey = APIKeys!["TMDbAPI"];
+			var testLogicProcessor = new BusinessLogic
+			{
+				APIKey = APIKeys!["TMDbAPI"]
+			};
 			testLogicProcessor.CreateWebClient();
 
 			await Assert.ThrowsAsync<NullReferenceException>(async () => await testLogicProcessor.VerifyFilmAsync(searchKey));
@@ -51,9 +49,10 @@ namespace FilmLoggerDotNET.Tests
 		public async Task VerifyWorkingArchiveSort()
 		{
 
-			var testLogicProcessor = new BusinessLogic();
-
-			testLogicProcessor.APIKey = APIKeys!["TMDbAPI"];
+			var testLogicProcessor = new BusinessLogic
+			{
+				APIKey = APIKeys!["TMDbAPI"]
+			};
 			testLogicProcessor.CreateWebClient();
 
 			// Creates two films on date 2014-11-20
