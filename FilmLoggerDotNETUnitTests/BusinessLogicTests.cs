@@ -5,12 +5,12 @@ namespace FilmLoggerDotNET.Tests
 
 	public class BusinessLogicTests
 	{
-		// Deserializes secret.json to obtain API keys.
-		// You must run FilmLoggerDotNET normally, or manually create the secret.json
-		// and put it in the ApplicationData folder yourself, or the unit tests will
-		// fail. The Dictionary Key is "TMDbAPI" and the Value is your own API Key.
+		/* Deserializes secret.json to obtain API keys.
+		 You must run FilmLoggerDotNET normally, or manually create the secret.json
+		 and put it in the ApplicationData folder yourself, or the unit tests will
+		 fail. The Dictionary Key is "TMDbAPI" and the Value is your own API Key. */
 		private static readonly string secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET", "secret.json");
-		private Dictionary<string,string> APIKeys = JsonSerializer.Deserialize<Dictionary<string, string>>(json: File.ReadAllText(path: secretPath))!;
+		private Dictionary<string, string> APIKeys = JsonSerializer.Deserialize<Dictionary<string, string>>(json: File.ReadAllText(path: secretPath))!;
 
 		[Theory]
 		[InlineData("tt0050083", "https://image.tmdb.org/t/p/w500/ow3wq89wM8qd5X7hWKxiRfsFf9C.jpg")] // 12 Angry Men (1957)
