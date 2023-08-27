@@ -54,9 +54,6 @@ namespace FilmLoggerDotNET
 
 		public async Task SaveArchiveFileAsync(IStorageFile fileDestination)
 		{
-			// Sorts workingMovieArchive based on Order index
-			workingMovieArchive = workingMovieArchive.OrderBy(x => x.Order).ToList();
-
 			// Writes on async worker thread to file path
 			await using var stream = await fileDestination.OpenWriteAsync();
 			using var streamWriter = new StreamWriter(stream);
@@ -126,6 +123,8 @@ namespace FilmLoggerDotNET
 			// Adds buffer Film
 			workingMovieArchive.Add(currentMovie);
 
+			// Sorts workingMovieArchive based on Order index
+			workingMovieArchive = workingMovieArchive.OrderBy(x => x.Order).ToList();
 
 			currentMovie = new Film();
 			isVerified = false;
