@@ -48,7 +48,7 @@ namespace FilmLoggerDotNET.Tests
 		}
 
 		[Fact]
-		public async Task VerifyWorkingArchiveSort()
+		public async Task WorkingArchiveSortTest()
 		{
 
 			var testLogicProcessor = new BusinessLogic
@@ -78,7 +78,7 @@ namespace FilmLoggerDotNET.Tests
 		}
 
 		[Fact]
-		public async Task VerifyEraseWorkingArchive()
+		public async Task EraseWorkingArchiveTest()
 		{
 			var testLogicProcessor = new BusinessLogic
 			{
@@ -90,14 +90,12 @@ namespace FilmLoggerDotNET.Tests
 			await testLogicProcessor.VerifyFilmAsync("tt1375666"); // Inception (2010)
 			testLogicProcessor.AddFilmToArchive(true, 3, 12, 2014);
 
-			// Asserts that there is a single film in the working archive
-			Assert.Single(testLogicProcessor.WorkingMovieArchive());
-
 			// Erases working archive
 			testLogicProcessor.EraseWorkingArchive();
 
 			// Asserts that the working archive is empty
 			Assert.Empty(testLogicProcessor.WorkingMovieArchive());
+			Assert.Empty(testLogicProcessor.SafetyCheckMovieArchive());
 		}
 	}
 }
