@@ -43,9 +43,9 @@ namespace FilmLoggerDotNET
 				// Copies working archive for dump safety checks
 				safetyCheckMovieArchive = new List<Film>(workingMovieArchive!);
 			}
-			catch (JsonException ex)
+			catch (JsonException)
 			{
-				throw ex;
+				throw;
 			}
 		}
 
