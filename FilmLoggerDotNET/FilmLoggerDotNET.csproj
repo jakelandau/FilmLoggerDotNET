@@ -30,17 +30,13 @@
     <PackageReference Include="MessageBox.Avalonia" Version="3.1.4" />
     <!--This is uniquely dumb, because FilmLogger uses System.Text.Json rather than Newtonsoft.
     But unfortunately, TMDbLib currently relies on Newtonsoft, and ships with an outdated version
-    that includes a security vulnerability. So we're pinning the version here until the package
-    maintainer upstream decides that shipping security vulnerabilities to downstream users is
-    a bad idea.-->
+    that includes a security vulnerability.-->
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <!--This library finally received a new maintainer, once the new package version comes
+    out of alpha on NuGet we can remove the Newtonsoft.Json version pinning.-->
+    <PackageReference Include="TMDbLib" Version="2.0.0" />
     <!--This needs to be included for Linux binaries to run when published-->
     <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.6" />
-    <!--This library is barely being maintained anymore, but the business logic relies on it.
-    If the dev finds a new maintainer then we'll keep it, otherwise I may have to just reimplement
-    our subset of API calls myself since I'm not gonna maintain a whole fork if I barely use most of
-    the API calls the wrapper exposes.-->
-    <PackageReference Include="TMDbLib" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\blank_poster.png" />
