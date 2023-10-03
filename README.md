@@ -75,13 +75,12 @@ A copy of the license is attached in the file [`LICENSE.MD`](https://github.com/
 FilmLogger NT 3.51 uses C# 11 running on .NET 7. It relies upon the following packages:
 
 * Avalonia - v11.0.4 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
-* AsyncImageLoader.Avalonia - v3.2.0 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
+* AsyncImageLoader.Avalonia - v3.2.1 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
 * MessageBox.Avalonia - v3.1.4 - [MIT License](https://github.com/AvaloniaCommunity/MessageBox.Avalonia/blob/master/LICENSE) - Copyright © 2019 CreateLab
-* Newtonsoft.Json - v13.0.3 - [MIT License](https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md) - Copyright © 2007 James Newton-King
-* TMDbLib - v2.0.0 - [MIT License](https://github.com/LordMike/TMDbLib/blob/master/LICENSE.txt) - Copyright © 2016 Michael Bisbjerg
+* TMDbLib - v2.0.0 - [MIT License](https://github.com/jellyfin/TMDbLib/blob/master/LICENSE.txt) - Copyright © 2016 Michael Bisbjerg
 
 FilmLogger's Unit Tests depend upon the following additional packages:
-* XUnit - v2.5.0 - [Apache 2.0 License](https://github.com/xunit/xunit/blob/main/LICENSE) - Copyright © .NET Foundation and Contributors
-* XUnit.Runner.VisualStudio - v2.5.0 - [Apache 2.0 License](https://github.com/xunit/visualstudio.xunit/blob/main/License.txt) - Copyright © .NET Foundation and Contributors
+* XUnit - v2.5.1 - [Apache 2.0 License](https://github.com/xunit/xunit/blob/main/LICENSE) - Copyright © .NET Foundation and Contributors
+* XUnit.Runner.VisualStudio - v2.5.1 - [Apache 2.0 License](https://github.com/xunit/visualstudio.xunit/blob/main/License.txt) - Copyright © .NET Foundation and Contributors
 
 NOTE: The entirety of FilmLogger is licensed under the terms of the AGPLv3-or-later. The above licenses only apply to these packages when obtained from the upstream sources; the downstream versions distributed in the FilmLogger binary become licensed under the AGPLv3-or-later license through it's viral features.
