@@ -26,7 +26,7 @@
     <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.4" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
     <!--This is uniquely dumb, because FilmLogger uses System.Text.Json rather than Newtonsoft.
     But unfortunately, TMDbLib currently relies on Newtonsoft, and ships with an outdated version
