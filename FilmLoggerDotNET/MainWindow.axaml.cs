@@ -19,7 +19,9 @@ namespace FilmLoggerDotNET
 {
 	public partial class MainWindow : Window
 	{
-		private Dictionary<string, string> APIKeys = new Dictionary<string, string>(); // Dictionary of API Keys, loaded in and out of secret.json// Calls BusinessLogic.cs as logic processor
+		// Dictionary of API Keys, loaded in and out of secret.json
+		private Dictionary<string, string> APIKeys = new Dictionary<string, string>(); 
+		// Calls BusinessLogic.cs as logic processor
 		private BusinessLogic logicProcessor = new BusinessLogic();
 
 		private readonly string iconPath = "avares://FilmLoggerDotNET/Assets/icon.png";
@@ -131,10 +133,10 @@ namespace FilmLoggerDotNET
 				try
 				{
 					// Deserializes secret.json to obtain API keys
-					APIKeys = JsonSerializer.Deserialize<Dictionary<string, string>>(json: File.ReadAllText(secretPath));
+					var APIKeys = JsonSerializer.Deserialize<Secrets>(File.ReadAllText(secretPath), SecretsSerializerContext.Default.Secrets);
 
 					// Attempts to instance client using API Key
-					logicProcessor.APIKey = APIKeys!["TMDbAPI"];
+					logicProcessor.APIKey = APIKeys.TMDbAPI;
 					logicProcessor.CreateWebClient();
 				}
 

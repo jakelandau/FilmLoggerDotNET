@@ -42,17 +42,13 @@ namespace FilmLoggerDotNET
 
         private async void OkButtonClick(object? sender, RoutedEventArgs e)
         {
-            // Adds TMDb API Key from text input to dictionary
-            Dictionary<string, string> apiKey = new Dictionary<string, string>();
-            apiKey.Add("TMDbAPI", TMDbAPIKey.Text!);
-
-            // Serializes API Key into secret.json
-            string apiKeyJSON = System.Text.Json.JsonSerializer.Serialize(apiKey, new JsonSerializerOptions { WriteIndented = true });
+			// Serializes API Key into secret.json
+			string APIKeyJSON = System.Text.Json.JsonSerializer.Serialize(new Secrets { TMDbAPI = TMDbAPIKey.Text! }, SecretsSerializerContext.Default.Secrets);
             var secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET");
             Directory.CreateDirectory(secretPath);
 
 
-            await File.WriteAllTextAsync(Path.Combine(secretPath, "secret.json"), apiKeyJSON);
+            await File.WriteAllTextAsync(Path.Combine(secretPath, "secret.json"), APIKeyJSON);
 
             // Closes Window
             Close();
