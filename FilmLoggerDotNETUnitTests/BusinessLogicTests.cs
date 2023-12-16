@@ -15,7 +15,7 @@ namespace FilmLoggerDotNET.Tests
 		[Theory]
 		[InlineData("tt0050083", "https://image.tmdb.org/t/p/w500/ow3wq89wM8qd5X7hWKxiRfsFf9C.jpg")] // 12 Angry Men (1957)
 		[InlineData("tt0133093", "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg")] // The Matrix (1999)
-		[InlineData("tt0047478", "https://image.tmdb.org/t/p/w500/8OKmBV5BUFzmozIC3pPWKHy17kx.jpg")] // Seven Samurai (1954)
+		[InlineData("tt0047478", "https://image.tmdb.org/t/p/w500/iAq0sq42vKTLneVGqHn1D4GzgrM.jpg")] // Seven Samurai (1954)
 		[InlineData("tt0245429", "https://image.tmdb.org/t/p/w500/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg")] // Spirited Away (2002)
 		[InlineData("tt0095327", "https://image.tmdb.org/t/p/w500/k9tv1rXZbOhH7eiCk378x61kNQ1.jpg")] // Grave of the Fireflies (1988)
 		public async Task VerifyFilmPositiveTest(string searchKey, string correctResponse)
