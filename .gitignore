@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /FilmLoggerDotNET/movie_list_beta.json
 /testEnvironments.json
+/FilmLoggerDotNET/Properties/launchSettings.json
