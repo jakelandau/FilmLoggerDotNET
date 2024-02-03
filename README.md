@@ -1,6 +1,6 @@
 # FilmLogger NT 3.51
 
-![GitHub all releases](https://img.shields.io/github/downloads/jakelandau/FilmLoggerDotNET/total) ![GitHub last commit](https://img.shields.io/github/last-commit/jakelandau/filmloggerdotnet) ![GitHub issues](https://img.shields.io/github/issues/jakelandau/FilmLoggerDotNET) ![GitHub](https://img.shields.io/github/license/JakeLandau/FilmLoggerDotNET)
+![GitHub all releases](https://img.shields.io/github/downloads/jakelandau/FilmLoggerDotNET/total) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/jakelandau/FilmLoggerDotNET/dotnet.yml) ![GitHub last commit](https://img.shields.io/github/last-commit/jakelandau/filmloggerdotnet) ![GitHub issues](https://img.shields.io/github/issues/jakelandau/FilmLoggerDotNET) ![GitHub](https://img.shields.io/github/license/JakeLandau/FilmLoggerDotNET)
 
 I built FilmLogger in 2016, and refactored it into FilmLogger v2 in 2021, and we took Python and Tkinter as far as they could go.
 
@@ -10,7 +10,7 @@ Built with Steve Ballmer's next-generation .NET technology, combined with the bo
 
 And now, with the added power of the new NT Kernel, this is no longer FilmLogger 3.11 For Workgroups. *This,* is:
 
-# FilmLogger NT 3.51 SP3
+# FilmLogger NT 3.51
 
 ## Description
 
@@ -23,9 +23,6 @@ When you open FilmLogger, you can start adding films immediately, or open a prev
 Verify your film using it's IMDb ID code! Films are verified using data services provided by [TheMovieDB.org](https://themoviedb.org).
 
 ![The Movie DB logo](https://www.themoviedb.org/assets/2/v4/logos/v2/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg)
-
-### **FilmLogger REQUIRES a free TheMovieDB.org Account with your own API Key.**
-
 
 Once your film has been verified, mark the date and location, and then click Add to Archive. A running count of all films in your archive shows in the corner.
 
@@ -63,7 +60,7 @@ Make sure that each film has a unique Order number, and that go from `1..X` in s
 
 ## Supported Platforms
 
-FilmLogger NT 3.51 SP3 is validated with prepackaged binaries for the following Operating Systems and architectures:
+FilmLogger NT 3.51 is validated with prepackaged binaries for the following Operating Systems and architectures:
 
 * Windows 10 Build 1607+ / Windows 11 Build 22000+
   * i686 (Installer .exe)
@@ -75,9 +72,9 @@ FilmLogger NT 3.51 SP3 is validated with prepackaged binaries for the following 
 
 If your Linux distribution uses musl or bionic rather than glibc, you will have to compile your own libSkiaSharp.so as Avalonia's included build will only work on glibc-based Linux distrubitions.
 
-As Windows 10 was the final release of Windows to be compiled for i686, FilmLogger will no longer package or validate binaries for 32-bit Windows once Windows 10 reaches End-of-Life for mainstream support on October 14, 2025.
+As Windows 10 was the final release of Windows on i686, FilmLogger NT 3.51 will no longer package or validate i686 binaries once Windows 10 reaches End-of-Life for mainstream support on October 14, 2025.
 
-AArch64 binaries are not provided for Windows or Linux, and neither x86_64 nor AArch64 binaries are provided for macOS, as I do not have the hardware to validate the functionality of those builds.
+AArch64 binaries are not provided for Windows or Linux, and no binaries are provided for macOS, as I do not have the hardware to validate the functionality of those builds.
 ## License
 
 Copyright © 2023 Jake Landau
