@@ -31,3 +31,4 @@ jobs:
       env: 
         apikey: ${{ secrets.TMDBAPI }}
       run: dotnet test --no-build --verbosity normal
+      working-directory: ..
