@@ -29,7 +29,7 @@ namespace FilmLoggerDotNET
 			// TMDb API key is stored as a User Secret. If you're compiling yourself,
 			// roll your own key. They're free!
 			IConfigurationRoot secrets = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-			string APIKey = secrets["TMDbAPI"];
+			string APIKey = secrets["apikey"];
 
 			// Attempts to instance client using API Key
 			webClient = new TMDbClient(APIKey);
