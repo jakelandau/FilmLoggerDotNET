@@ -26,7 +26,7 @@ jobs:
       env: 
         apikey: ${{ secrets.TMDBAPI }}
       run: dotnet build --no-restore
-      working-directory: FilmLoggerDotNET
+      working-directory: /home/runner/work/FilmLoggerDotNET/FilmLoggerDotNET
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: ../FilmLoggerDotNETUnitTests
+      working-directory: /home/runner/work/FilmLoggerDotNET/FilmLoggerDotNETUnitTests
