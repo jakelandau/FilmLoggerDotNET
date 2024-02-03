@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,6 +16,7 @@
     <TrimmerSingleWarn>false</TrimmerSingleWarn>
     <RuntimeIdentifiers>win-x64;win-x86;linux-x64</RuntimeIdentifiers>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <UserSecretsId>f5c8d1fa-03e0-4901-a5f8-c44e5cb353c0</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <None Remove=".gitignore" />
@@ -28,6 +29,8 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.7" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.7" />
     <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
     <!--This library finally received a new maintainer, once the new package version comes
     out of alpha on NuGet we can remove the Newtonsoft.Json version pinning.-->
     <PackageReference Include="TMDbLib" Version="2.1.0" />

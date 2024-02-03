@@ -1,4 +1,5 @@
 ﻿using Avalonia.Platform.Storage;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,6 @@ namespace FilmLoggerDotNET
 		private List<Film> safetyCheckMovieArchive = new List<Film>(); // Copy of above made for safety check; if working archive doesn't match safety check, data has not been saved
 
 		private TMDbClient webClient; // Client for accessing TheMovieDB API
-		public string APIKey { get; set; } = "";
 
 		private Film currentMovie = new Film(); // Film object in buffer to add to working archive
 		private bool isVerified = false; // Latch to ensure IMDb ID has been verified before attempting to add to archive
@@ -25,8 +25,12 @@ namespace FilmLoggerDotNET
 		public List<Film> WorkingMovieArchive() { return workingMovieArchive; }
 		public List<Film> SafetyCheckMovieArchive() { return safetyCheckMovieArchive; }
 
-		public void CreateWebClient()
-		{
+		public BusinessLogic() {
+			// TMDb API key is stored as a User Secret. If you're compiling yourself,
+			// roll your own key. They're free!
+			IConfigurationRoot secrets = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
+			string APIKey = secrets["TMDbAPI"];
+
 			// Attempts to instance client using API Key
 			webClient = new TMDbClient(APIKey);
 		}

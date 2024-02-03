@@ -46,8 +46,6 @@
         <MenuItem x:Name="DumpFileMenu" Header="_Save"></MenuItem>
       </MenuItem>
       <MenuItem x:Name="ConfigMenu" Header="_Config">
-        <MenuItem x:Name="APIKeyMenu" Header="_API Key"></MenuItem>
-        <Separator></Separator>
         <MenuItem x:Name="LicenseMenu" Header="_License"></MenuItem>
       </MenuItem>
     </Menu>

@@ -5,13 +5,6 @@ namespace FilmLoggerDotNET.Tests
 
 	public class BusinessLogicTests
 	{
-		/* Deserializes secret.json to obtain API keys.
-		 You must run FilmLoggerDotNET normally, or manually create the secret.json
-		 and put it in the ApplicationData folder yourself, or the unit tests will
-		 fail. The Dictionary Key is "TMDbAPI" and the Value is your own API Key. */
-		private static readonly string secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET", "secret.json");
-		private Dictionary<string, string> APIKeys = JsonSerializer.Deserialize<Dictionary<string, string>>(json: File.ReadAllText(path: secretPath))!;
-
 		[Theory]
 		[InlineData("tt0050083", "https://image.tmdb.org/t/p/w500/ow3wq89wM8qd5X7hWKxiRfsFf9C.jpg")] // 12 Angry Men (1957)
 		[InlineData("tt0133093", "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg")] // The Matrix (1999)
@@ -20,11 +13,7 @@ namespace FilmLoggerDotNET.Tests
 		[InlineData("tt0095327", "https://image.tmdb.org/t/p/w500/k9tv1rXZbOhH7eiCk378x61kNQ1.jpg")] // Grave of the Fireflies (1988)
 		public async Task VerifyFilmPositiveTest(string searchKey, string correctResponse)
         {
-			var testLogicProcessor = new BusinessLogic
-			{
-				APIKey = APIKeys!["TMDbAPI"]
-			};
-			testLogicProcessor.CreateWebClient();
+			var testLogicProcessor = new BusinessLogic();
 
 			var posterPath = await testLogicProcessor.VerifyFilmAsync(searchKey);
 			Assert.Equal(correctResponse, posterPath);
@@ -38,11 +27,7 @@ namespace FilmLoggerDotNET.Tests
 		[InlineData(null)] // null input
 		public async Task VerifyFilmNegativeTest(string searchKey)
 		{
-			var testLogicProcessor = new BusinessLogic
-			{
-				APIKey = APIKeys!["TMDbAPI"]
-			};
-			testLogicProcessor.CreateWebClient();
+			var testLogicProcessor = new BusinessLogic();
 
 			await Assert.ThrowsAsync<NullReferenceException>(async () => await testLogicProcessor.VerifyFilmAsync(searchKey));
 		}
@@ -51,11 +36,7 @@ namespace FilmLoggerDotNET.Tests
 		public async Task WorkingArchiveSortTest()
 		{
 
-			var testLogicProcessor = new BusinessLogic
-			{
-				APIKey = APIKeys!["TMDbAPI"]
-			};
-			testLogicProcessor.CreateWebClient();
+			var testLogicProcessor = new BusinessLogic();
 
 			// Creates two films on date 2014-11-20
 			foreach (var imdbID in new List<string> { "tt0167260", "tt0088763" }) // LOTR: Return of the King (2003), then Back To The Future (1985)
@@ -80,11 +61,7 @@ namespace FilmLoggerDotNET.Tests
 		[Fact]
 		public async Task EraseWorkingArchiveTest()
 		{
-			var testLogicProcessor = new BusinessLogic
-			{
-				APIKey = APIKeys!["TMDbAPI"]
-			};
-			testLogicProcessor.CreateWebClient();
+			var testLogicProcessor = new BusinessLogic();
 
 			// Creates one film on date 2014-12-03
 			await testLogicProcessor.VerifyFilmAsync("tt1375666"); // Inception (2010)

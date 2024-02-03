@@ -20,7 +20,8 @@ namespace FilmLoggerDotNET
 	public partial class MainWindow : Window
 	{
 		// Dictionary of API Keys, loaded in and out of secret.json
-		private Dictionary<string, string> APIKeys = new Dictionary<string, string>(); 
+		private Dictionary<string, string> APIKeys = new Dictionary<string, string>();
+
 		// Calls BusinessLogic.cs as logic processor
 		private BusinessLogic logicProcessor = new BusinessLogic();
 
@@ -67,7 +68,6 @@ namespace FilmLoggerDotNET
 			// Associates Menu items with event handlers
 			DumpFileMenu.Click += DumpFileButtonClick;
 			OpenFileMenu.Click += FilePickerButtonClick;
-			APIKeyMenu.Click += GetAPIKey;
 			LicenseMenu.Click += ShowFilmLoggerLicense;
 
 			// Ensures user has chance to save before closing application
@@ -125,34 +125,6 @@ namespace FilmLoggerDotNET
 
 		private async void VerifyButtonClick(object? sender, RoutedEventArgs e)
 		{
-			var secretPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData, Environment.SpecialFolderOption.DoNotVerify), "FilmLoggerDotNET", "secret.json");
-
-			// Checks if API Key is stored on disk, if not calls GetAPIKey and ends function
-			if (File.Exists(secretPath))
-			{
-				try
-				{
-					// Deserializes secret.json to obtain API keys
-					var APIKeys = JsonSerializer.Deserialize<Secrets>(File.ReadAllText(secretPath), SecretsSerializerContext.Default.Secrets);
-
-					// Attempts to instance client using API Key
-					logicProcessor.APIKey = APIKeys.TMDbAPI;
-					logicProcessor.CreateWebClient();
-				}
-
-				catch
-				{
-					// Throws up API Key window if stored key doesn't work
-					GetAPIKey(sender, e);
-					return;
-				}
-			}
-			else
-			{
-				GetAPIKey(sender, e);
-				return;
-			}
-
 			try
 			{
 				// Sets poster image to the TMDb link provided by the API.
@@ -345,16 +317,6 @@ namespace FilmLoggerDotNET
 			ArchiveCount.Text = $"Film Count: {count}";
 		}
 
-		public async void GetAPIKey(object? sender, RoutedEventArgs e)
-		{
-			// Opens APIKeyWindow to retrieve TheMovieDB API Key from user
-			var APIKeyDialog = new APIKeyWindow
-			{
-				WindowStartupLocation = WindowStartupLocation.CenterScreen
-			};
-			await APIKeyDialog.ShowDialog(this);
-		}
-
 		private async void ShowFilmLoggerLicense(object? sender, RoutedEventArgs e)
 		{
 			// Displays software license for FilmLogger, indicating the program
@@ -366,7 +328,7 @@ namespace FilmLoggerDotNET
 				"This program is free software; you can redistribute it and/or modify it under the terms of the GNU Affero General Public License\r\n\r\n as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\r\n\r\n" +
 				"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty\r\n\r\n of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License, version 3 for more details.\r\n\r\n" +
 				"A copy of the license is attached in the file `LICENSE.MD`, included in the program folder.",
-				boxIcon: MsBox.Avalonia.Enums.Icon.None);
+				boxIcon: MsBox.Avalonia.Enums.Icon.Info);
 		}
 
 		private async Task ShowMessageBoxAsync(bool isCustom, string contentTitle, string contentHeader, string contentMessage, MsBox.Avalonia.Enums.Icon boxIcon)
