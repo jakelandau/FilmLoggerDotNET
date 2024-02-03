@@ -23,7 +23,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Interpolate API Key
-      run: dotnet user-secrets set "apikey" ${{ secrets.TMDBAPI }}
+      run: dotnet user-secrets set "apikey" ${{ secrets.TMDBAPI }} --project ".\FilmLoggerDotNet.csproj
     - name: Build
       run: dotnet build --no-restore
     - name: Test
