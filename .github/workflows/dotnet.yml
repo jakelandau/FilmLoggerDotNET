@@ -22,9 +22,9 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Interpolate API Key
+      run: dotnet user-secrets set "apikey" ${{ secrets.TMDBAPI }}
     - name: Build
-      env:
-        apikey: ${{ secrets.TMDBAPI }}
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
