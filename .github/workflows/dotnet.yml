@@ -16,19 +16,23 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
     - name: Restore dependencies
       run: dotnet restore
+      shell: bash
+
     - name: Build
       env: 
         apikey: ${{ secrets.TMDBAPI }}
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release --no-restore
       working-directory: FilmLoggerDotNET
+      shell: bash
+
     - name: Test
-      env: 
-        apikey: ${{ secrets.TMDBAPI }}
-      run: dotnet test --no-build --verbosity normal
-      working-directory: ..
+      run: dotnet test --configuration Release --no-build
+      shell: bash
