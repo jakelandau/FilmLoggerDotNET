@@ -10,7 +10,7 @@ Built with Steve Ballmer's next-generation .NET technology, combined with the bo
 
 And now, with the added power of the new NT Kernel, this is no longer FilmLogger 3.11 For Workgroups. *This,* is:
 
-# FilmLogger NT 3.51
+# FilmLogger NT 3.51 SP3
 
 ## Description
 
@@ -61,6 +61,23 @@ FilmLogger stores data in an *open* `JSON` format, the `FilmLogger v3 standard`!
 
 Make sure that each film has a unique Order number, and that go from `1..X` in sequence with no gaps. This only matters if you're making the `JSON` file manually; if you use FilmLogger, or any other software compatible with the `FilmLogger v3 Standard`, it will handle the ordering for you.
 
+## Supported Platforms
+
+FilmLogger NT 3.51 SP3 is validated with prepackaged binaries for the following Operating Systems and architectures:
+
+* Windows 10 Build 1607+ / Windows 11 Build 22000+
+  * i686 (Installer .exe)
+  * x86_64 (Installer .exe)
+* Ubuntu 20.04+
+  * x86_64 (.deb Package)
+* Fedora 37+ / AlmaLinux 8+
+  * x86_64 (.rpm Package)
+
+If your Linux distribution uses musl or bionic rather than glibc, you will have to compile your own libSkiaSharp.so as Avalonia's included build will only work on glibc-based Linux distrubitions.
+
+As Windows 10 was the final release of Windows to be compiled for i686, FilmLogger will no longer package or validate binaries for 32-bit Windows once Windows 10 reaches End-of-Life for mainstream support on October 14, 2025.
+
+AArch64 binaries are not provided for Windows or Linux, and neither x86_64 nor AArch64 binaries are provided for macOS, as I do not have the hardware to validate the functionality of those builds.
 ## License
 
 Copyright © 2023 Jake Landau
@@ -72,7 +89,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 A copy of the license is attached in the file [`LICENSE.MD`](https://github.com/jakelandau/FilmLoggerDotNET/blob/main/LICENSE.md).
 
 ## Dependencies
-FilmLogger NT 3.51 uses C# 11 running on .NET 7. It relies upon the following packages:
+FilmLogger NT 3.51 uses C# 12 running on .NET 8. It relies upon the following packages:
 
 * Avalonia - v11.0.7 - [MIT License](https://github.com/AvaloniaUI/Avalonia/blob/master/licence.md) - Copyright © .NET Foundation and Contributors
 * AsyncImageLoader.Avalonia - v3.2.1 - [MIT License](https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia/blob/master/LICENSE) - Copyright © 2021 SKProCH
