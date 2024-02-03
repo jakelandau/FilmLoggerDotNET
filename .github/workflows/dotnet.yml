@@ -13,7 +13,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -22,9 +22,10 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Interpolate API Key
-      run: dotnet user-secrets set "apikey" ${{ secrets.TMDBAPI }} --project "FilmLoggerDotNET.csproj"
     - name: Build
+      env: 
+        apikey: ${{ secrets.TMDBAPI }}
       run: dotnet build --no-restore
+      working-directory: FilmLoggerDotNET
     - name: Test
       run: dotnet test --no-build --verbosity normal
