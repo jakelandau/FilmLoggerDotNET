@@ -29,10 +29,10 @@ jobs:
     - name: Build
       env: 
         apikey: ${{ secrets.TMDBAPI }}
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build -c Debug --no-restore
       working-directory: FilmLoggerDotNET
       shell: bash
 
     - name: Test
-      run: dotnet test --configuration Release --no-build
+      run: dotnet test -c Debug --no-build
       shell: bash
