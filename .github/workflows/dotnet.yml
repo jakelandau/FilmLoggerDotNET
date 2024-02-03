@@ -29,6 +29,11 @@ jobs:
     - name: Build & Test
       env: 
         apikey: ${{ secrets.TMDBAPI }}
-      run: dotnet test --no-restore
+      run: dotnet build --no-restore
+      working-directory: FilmLoggerDotNET
+      shell: bash
+
+    - name: Test
+      run: dotnet test --no-build
       working-directory: FilmLoggerDotNET
       shell: bash
