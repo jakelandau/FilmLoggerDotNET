@@ -38,20 +38,7 @@ namespace FilmLoggerDotNET
 			// Fallback due to lack of Mica brush on Windows 10, Linux and Mac
 			if (!System.OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000, 0))
 			{
-				TransparencyLevelHint = new List<WindowTransparencyLevel>() { WindowTransparencyLevel.None };
-				var BackgroundGradient = new LinearGradientBrush()
-				{
-					GradientStops = {
-						new GradientStop(offset: 0.0, color: Color.FromRgb(55, 6, 23)),
-						new GradientStop(offset: 0.25, color: Color.FromRgb(57, 6, 22)),
-						new GradientStop(offset: 0.50, color: Color.FromRgb(60, 6, 20)),
-						new GradientStop(offset: 0.75, color: Color.FromRgb(62, 5, 19)),
-						new GradientStop(offset: 1.00, color: Color.FromRgb(64, 5, 17))
-					},
-					StartPoint = Avalonia.RelativePoint.TopLeft,
-					EndPoint = Avalonia.RelativePoint.BottomRight
-				};
-				Background = BackgroundGradient;
+				Background = new SolidColorBrush(color: Color.FromRgb(30, 30, 35));
 			}
 
 			// Sets the time dial to ensure that the date the film is seen
