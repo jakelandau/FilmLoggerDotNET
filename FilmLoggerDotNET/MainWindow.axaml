@@ -1,4 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
+        xmlns:ui="using:FluentAvalonia.UI.Controls"
+        xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"    
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,8 +9,7 @@
         x:Class="FilmLoggerDotNET.MainWindow"
         Title="FilmLogger NT 3.51 SP3" SizeToContent="WidthAndHeight"
         TransparencyLevelHint="Mica"
-        Background="Transparent"
-        RequestedThemeVariant="Dark">
+        Background="Transparent">
   <Window.Styles>
     <Style Selector="Button">
       <Setter Property="FontSize" Value="14"/>
@@ -58,8 +59,8 @@
               Content="Open File" Grid.Row="0" Grid.Column="0"/>
       <TextBlock x:Name="FileName" Text="" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
       <asyncImageLoader:AdvancedImage x:Name="PosterImage"
-             Height="350" Grid.Row="0" Grid.Column="3" Grid.RowSpan="4"
-             Source="./Assets/blank_poster.png"/>
+              Height="350" Grid.Row="0" Grid.Column="3" Grid.RowSpan="4"
+              Source="./Assets/blank_poster.png"/>
 
       <!--Row 1-->
       <TextBlock Text="IMDb ID:" Grid.Row="1" Grid.Column="0"/>
