@@ -33,7 +33,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.1" />
     <PackageReference Include="TMDbLib" Version="2.2.0" />
     <!--This needs to be included for Linux binaries to run when published-->
-    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.8" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.116.1" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\blank_poster.png" />
