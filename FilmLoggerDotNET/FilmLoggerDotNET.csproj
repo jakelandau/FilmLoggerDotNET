@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Version>3.51.3</Version>
     <Nullable>enable</Nullable>
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
@@ -23,17 +23,15 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.3.0" />
-    <PackageReference Include="Avalonia" Version="11.2.3" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+    <PackageReference Include="Avalonia" Version="11.2.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.5" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.4" />
-    <PackageReference Include="FluentAvaloniaUI" Version="2.1.0" />
-    <PackageReference Include="MessageBox.Avalonia" Version="3.1.6.13" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.5" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.2.0" />
+    <PackageReference Include="MessageBox.Avalonia" Version="3.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.2" />
     <PackageReference Include="TMDbLib" Version="2.2.0" />
-    <!--This needs to be included for Linux binaries to run when published-->
-    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.116.1" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\blank_poster.png" />
